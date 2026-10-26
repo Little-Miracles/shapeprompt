@@ -19,7 +19,8 @@ Two people on two sides of one order:
 
 ## The Core Loop
 Customer opens ShapePrompt → picks one of three paths:
-- **A. Ready works** — the maker's real printed pieces (dragon, goat, duck, box…) with photos. Pick color and size → the price is calculated at once → pay with PayPal → status **Paid**.
+- **A. Ready works** — the maker's real printed pieces (dragon, goat…) with photos. Pick material, color and a fixed size → a fixed price with VAT, delivery as a separate line → pay with PayPal → status **Paid**.
+  - **Shop assistant (agentic commerce):** the customer can just write "a shiny dragon as a gift, up to 100 zł". The AI assistant picks the work, material and size from the catalog, shows the summary, and after the customer says yes it **creates the PayPal order itself** — the customer only presses Pay. The price still comes from code; the assistant chooses only among real options.
 - **B. Custom order from a picture** — upload a photo or drawing and write wishes → AI turns the message into a neat order card → the maker gets a notification → in **My Workshop** she enters grams and print hours → code calculates the price → PayPal invoice → paid.
 - **C. Sketch from an idea** — describe the idea in words → pay a small fixed sketch fee with PayPal → AI draws 2–3 sketches → the customer picks one → it becomes a custom order (path B).
 
@@ -60,6 +61,8 @@ Each step is a working app on its own, so there is always something to submit:
 - Email notification to the maker about a new order.
 - PayPal (Sandbox) through a Cloudflare server; no keys inside the app.
 - Three packages; shipping rule: prints Poland only, files worldwide.
+- **The customer sees a final price, not the breakdown.** Electricity, labor, risk and margin stay in My Workshop. The customer sees: the piece (fixed size, chosen material) with 23% VAT included, and delivery (box + InPost parcel locker) as a separate line. The maker is a VAT payer: her costs are counted net.
+- **Materials for customers:** 3–4 main filaments with a short note each (PLA Basic — affordable, fewer colors; PLA Silk — metallic shine; PETG — water-resistant, also clear), plus "many more on request: flexible TPU, translucent, glow-in-the-dark…".
 
 ## Later
 - AI reads a screenshot of a filament order and fills in My Materials.

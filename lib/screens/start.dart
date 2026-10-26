@@ -25,7 +25,8 @@ class StartScreen extends StatelessWidget {
             Text(
               'AI helps with the details. A real maker prints it.',
               textAlign: TextAlign.center,
-              style: SP.body(12.5, weight: FontWeight.w300)
+              style: SP
+                  .body(12.5, weight: FontWeight.w300)
                   .copyWith(fontStyle: FontStyle.italic),
             ),
             const Spacer(),

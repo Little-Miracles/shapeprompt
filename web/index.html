@@ -38,6 +38,12 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+  <!-- Rotating 3D models of the ready works -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+  <script>
+    // No "Save image as…" / "Save model" menu on the showcase.
+    document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+  </script>
 </head>
 <body>
   <script>
