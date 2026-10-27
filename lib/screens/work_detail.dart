@@ -1,10 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
 
 import '../catalog.dart';
 import '../models.dart';
+import '../paypal.dart';
 import '../pricing.dart';
 import '../theme.dart';
 import '../widgets/model_view.dart';
+import '../widgets/motion_splash.dart';
+import '../tr_text.dart';
 
 class WorkDetailScreen extends StatefulWidget {
   const WorkDetailScreen({super.key, required this.work});
@@ -19,6 +22,23 @@ class _WorkDetailScreenState extends State<WorkDetailScreen> {
   late FilamentColor _color = _material.colors.first;
   late PrintSize _size = widget.work.sizes.first;
 
+  /// While the piece comes alive the page stays empty, so the 3D viewer
+  /// doesn't flash before the cover arrives.
+  late bool _intro = widget.work.motion != null;
+
+  @override
+  void initState() {
+    super.initState();
+    final motion = widget.work.motion;
+    if (motion != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        if (!mounted) return;
+        await showMotionSplash(context, motion, width: 420, solid: true);
+        if (mounted) setState(() => _intro = false);
+      });
+    }
+  }
+
   void _pickMaterial(FilamentMaterial m) => setState(() {
         _material = m;
         // Keep the color if this material has it, otherwise take the first.
@@ -28,6 +48,7 @@ class _WorkDetailScreenState extends State<WorkDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_intro) return const SPScaffold(body: SizedBox.shrink());
     final w = widget.work;
     final piece = quote(
       size: _size,
@@ -119,22 +140,18 @@ class _WorkDetailScreenState extends State<WorkDetailScreen> {
             ),
           ],
           const SizedBox(height: 22),
-          Opacity(
-            opacity: 0.5,
-            child: Container(
-              height: 54,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                gradient: SP.goldGradient,
-                borderRadius: BorderRadius.circular(40),
-              ),
-              child: Text('Pay with PayPal · ${zl(total)}',
-                  style: SP.title(17, color: SP.asphaltDeep)),
-            ),
+          _PayButton(
+            label: 'Pay with PayPal · ${zl(total)}',
+            title: '${w.name} · ${_material.name} · ${_color.name} · '
+                '${_sizeLabel(_size)}',
+            amount: total,
           ),
           const SizedBox(height: 8),
-          Text('PayPal payment is the next build step.',
-              textAlign: TextAlign.center, style: SP.body(11)),
+          Text('Demo mode: PayPal Sandbox. No real money is charged.',
+              textAlign: TextAlign.center,
+              style: SP
+                  .body(11, color: SP.purple)
+                  .copyWith(fontStyle: FontStyle.italic)),
         ],
       ),
     );
@@ -331,6 +348,62 @@ class _PriceRow extends StatelessWidget {
                         ? SP.body(11.5)
                         : SP.body(13, color: SP.text)),
           ],
+        ),
+      );
+}
+
+/// Gold PayPal button: creates the order through our Worker and leaves for
+/// PayPal; the customer comes back to the "Paid" screen.
+class _PayButton extends StatefulWidget {
+  const _PayButton(
+      {required this.label, required this.title, required this.amount});
+  final String label;
+  final String title;
+  final double amount;
+
+  @override
+  State<_PayButton> createState() => _PayButtonState();
+}
+
+class _PayButtonState extends State<_PayButton> {
+  bool _busy = false;
+
+  Future<void> _pay() async {
+    setState(() => _busy = true);
+    try {
+      await PayPal.checkout(title: widget.title, amount: widget.amount);
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _busy = false);
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('PayPal is not available right now. '
+              'Please try again in a moment.')));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(40),
+          onTap: _busy ? null : _pay,
+          child: Ink(
+            height: 54,
+            decoration: BoxDecoration(
+              gradient: SP.metalGold,
+              borderRadius: BorderRadius.circular(40),
+            ),
+            child: Center(
+              child: _busy
+                  ? const SizedBox(
+                      width: 24,
+                      height: 24,
+                      child: CircularProgressIndicator(
+                          strokeWidth: 2.5, color: SP.asphaltDeep))
+                  : Text(widget.label,
+                      style: SP.title(17, color: SP.asphaltDeep)),
+            ),
+          ),
         ),
       );
 }

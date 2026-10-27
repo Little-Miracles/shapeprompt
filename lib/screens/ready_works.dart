@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
 
 import '../catalog.dart';
 import '../models.dart';
 import '../pricing.dart';
 import '../theme.dart';
 import 'work_detail.dart';
+import '../tr_text.dart';
 
 class ReadyWorksScreen extends StatelessWidget {
   const ReadyWorksScreen({super.key});

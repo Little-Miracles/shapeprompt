@@ -36,3 +36,17 @@ sketches only; the final 3D model is made and refined by a real maker.
 | **Watermarks**: a faint diagonal "ShapePrompt" pattern baked into the pictures and laid over the 3D view, plus the logo mark in the corner | Screenshots can't be blocked on the web | The maker's work stays recognisably hers |
 | Credit line: "Powered by MakerWorld-Image-to-3D" | The 3D models were generated with MakerLab from the maker's own pictures | Honest about which tools made what |
 | Price shown the Polish way: **Total to pay → incl. VAT 23% → Net** | The maker is a VAT payer; consumers must see the gross price first | Clear for people and correct for the law |
+
+## Day 3 — 27 Oct 2026
+
+| What we changed | What we noticed | Why it matters |
+|---|---|---|
+| **Language globe** (EN · UA · PL · DE · FR), translated on the fly — no translation files in the app | The maker reads Ukrainian; customers come from everywhere | Everyone reads the shop in their own language |
+| Every phrase is checked with the translator **line by line** before it ships | Sent as one block, the translator lost "!" and broke the grammar ("Type" became "тип") | Translations read like a person wrote them |
+| An **ice welcome** over the home screen: the dragon introduces itself — talk or type, listen or read, sound can be turned off | Most people ignore corner helpers that pop up questions | The dragon greets like a **host welcoming guests**, not a servant — people listen to a host |
+| **Voice**: the dragon reads answers aloud; a mic to speak instead of typing | Chrome on macOS 12 crashed on one long text with no voice for the language | Speech goes in short sentences, waits after "stop", stays silent if the system has no voice |
+| The home screen in **metal**: gold, emerald-gold, amethyst-gold cards; the title in Cormorant (it has Cyrillic) | The first font had no Cyrillic, so Ukrainian titles looked broken | One screen with its own character |
+| **Living dragon**: a 4-second greeting with the ShapePrompt logo **gold-embossed** on its sign; the dragon and goat come alive when their page opens | Two Canva videos turned out to be still frames; a black plate "bit off" the paws | Frames are cut out by our own script, the logo is placed on every frame |
+| **PayPal checkout (Sandbox)**: Pay with PayPal → approve → back to "Thank you! Your order is paid." — first test purchase went through | — | The core of the shop works end to end |
+| A tiny **Cloudflare Worker** creates and captures orders; the PayPal secret lives only there, encrypted | Earlier projects leaked keys that were inside the app | The website never sees the secret |
+| Least privilege: Payouts and Subscriptions are switched off in the PayPal app | A stolen secret could otherwise send money out | Even in the worst case, money can't leave |

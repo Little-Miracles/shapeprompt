@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
 
 import '../theme.dart';
 import 'home.dart';
+import '../tr_text.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});

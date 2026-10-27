@@ -63,6 +63,7 @@ const readyWorks = <ReadyWork>[
     image: 'assets/works/dragon.jpg',
     modelImage: 'assets/works/dragon_model.png',
     model: 'assets/works/dragon.glb',
+    motion: Motion('assets/anim/dragon', 36),
     materialIds: ['pla_silk', 'pla_basic'],
     finishingHours: 1,
     sizes: [
@@ -79,6 +80,7 @@ const readyWorks = <ReadyWork>[
     image: 'assets/works/goat.jpg',
     modelImage: 'assets/works/goat_model.png',
     model: 'assets/works/goat.glb',
+    motion: Motion('assets/anim/goat', 36),
     materialIds: ['pla_silk', 'pla_basic'],
     finishingHours: 1,
     sizes: [

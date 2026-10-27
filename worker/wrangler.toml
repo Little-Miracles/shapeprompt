@@ -1,0 +1,11 @@
+name = "shapeprompt-paypal"
+main = "src/index.js"
+compatibility_date = "2026-10-20"
+
+# Public values. The PayPal secret is NOT here: it is added once in the
+# Cloudflare dashboard (Settings → Variables and Secrets → PAYPAL_SECRET,
+# type Secret) and never leaves Cloudflare.
+[vars]
+PAYPAL_API = "https://api-m.sandbox.paypal.com"
+PAYPAL_CLIENT_ID = "BAAEB-i3UNDtal48UVT8aKPYaSMW_o9KmAay71E_xYD-htxT3ZYtrv9pkxj7Yb-4eQCD-7NX_7OvYR-hA8"
+ALLOWED_ORIGINS = "https://little-miracles.github.io,http://localhost"

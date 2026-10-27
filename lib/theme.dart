@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
 import 'package:google_fonts/google_fonts.dart';
 
 import 'screens/helper.dart';
+import 'tr_text.dart';
 
 /// ShapePrompt palette — taken from the dragon logo.
 class SP {
@@ -36,6 +37,21 @@ class SP {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [goldLight, gold, goldDeep],
+  );
+
+  /// Real metallic gold — dark bronze, gold, a highlight and back,
+  /// no pale yellow. Used on the home screen and its ice welcome.
+  static const metalGold = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Color(0xFF6E5126),
+      Color(0xFFB8913F),
+      Color(0xFFE6C77A),
+      Color(0xFFB08837),
+      Color(0xFF7A5A2A),
+    ],
+    stops: [0.0, 0.3, 0.5, 0.72, 1.0],
   );
 
   static TextStyle title(double size, {Color color = gold}) =>
@@ -89,15 +105,19 @@ class SPScaffold extends StatelessWidget {
             child: Center(
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 480),
-                child: helper
-                    ? Stack(
-                        children: [
-                          Positioned.fill(child: body),
-                          const Positioned(
-                              right: 16, bottom: 20, child: HelperButton()),
-                        ],
-                      )
-                    : body,
+                // The globe sits in the top right corner of every screen.
+                child: Stack(
+                  children: [
+                    Positioned.fill(child: body),
+                    const Positioned(
+                        right: 4,
+                        top: 4,
+                        child: LanguageButton(color: SP.gold)),
+                    if (helper)
+                      const Positioned(
+                          right: 16, bottom: 20, child: HelperButton()),
+                  ],
+                ),
               ),
             ),
           ),

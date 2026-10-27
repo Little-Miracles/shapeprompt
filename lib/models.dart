@@ -62,6 +62,26 @@ class PrintSize {
   final bool fromSlicer;
 }
 
+/// A few seconds of a figure coming alive: numbered frames 01.webp, 02.webp…
+/// played by the app itself (an animated image would stand still in some
+/// browsers).
+class Motion {
+  const Motion(this.folder, this.frames, {this.fps = 12, this.alive});
+  final String folder;
+  final int frames;
+  final int fps;
+
+  /// For a single still picture the app animates itself: for this long.
+  final Duration? alive;
+
+  Duration get length => alive ?? Duration(milliseconds: 1000 * frames ~/ fps);
+
+  List<String> get paths => [
+        for (var i = 1; i <= frames; i++)
+          '$folder/${i.toString().padLeft(2, '0')}.webp'
+      ];
+}
+
 class ReadyWork {
   const ReadyWork({
     required this.id,
@@ -70,6 +90,7 @@ class ReadyWork {
     required this.image,
     required this.modelImage,
     required this.model,
+    this.motion,
     required this.materialIds,
     required this.sizes,
     this.finishingHours = 0.5,
@@ -83,6 +104,9 @@ class ReadyWork {
 
   /// The 3D model the customer can rotate (compressed .glb).
   final String model;
+
+  /// A few seconds of the piece coming alive, shown when its page opens.
+  final Motion? motion;
   final List<String> materialIds;
   final List<PrintSize> sizes;
 
