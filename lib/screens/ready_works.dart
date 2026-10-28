@@ -39,16 +39,23 @@ class _WorkTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final from = [
+    // The cheapest way to have this piece, named in full so the customer
+    // finds the same price on its page.
+    final options = [
       for (final id in work.materialIds)
         for (final s in work.sizes)
-          quote(
-            size: s,
-            material: materials[id]!,
-            costs: costs,
-            finishingHours: work.finishingHours,
-          ).gross,
-    ].reduce((a, b) => a < b ? a : b);
+          (
+            price: quote(
+              size: s,
+              material: materials[id]!,
+              costs: costs,
+              packaging: packagings.first,
+              finishingHours: work.finishingHours,
+            ).gross,
+            what: '${s.label} · ${_cm(s.heightCm)} cm · ${materials[id]!.name}',
+          ),
+    ];
+    final from = options.reduce((a, b) => a.price <= b.price ? a : b);
     return Padding(
       padding: const EdgeInsets.only(bottom: 18),
       child: InkWell(
@@ -78,14 +85,22 @@ class _WorkTile extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 12, 16, 14),
-                child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Expanded(
-                      child: Text(work.name,
-                          style: SP.title(19, color: SP.goldLight)),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(work.name,
+                              style: SP.title(19, color: SP.goldLight)),
+                        ),
+                        Text('from ${zl(from.price)}',
+                            style: SP.body(13, color: SP.gold)),
+                      ],
                     ),
-                    Text('from ${zl(from)}',
-                        style: SP.body(13, color: SP.gold)),
+                    const SizedBox(height: 4),
+                    Text('${from.what} · incl. VAT, without delivery',
+                        style: SP.body(11.5)),
                   ],
                 ),
               ),
@@ -96,3 +111,5 @@ class _WorkTile extends StatelessWidget {
     );
   }
 }
+
+String _cm(double v) => v == v.roundToDouble() ? '${v.toInt()}' : '$v';

@@ -44,6 +44,27 @@
     // No "Save image as…" / "Save model" menu on the showcase.
     document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
   </script>
+  <!-- Cloudflare Turnstile: lets only real people talk to the dragon -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  <script>
+    // Resolves with a one-time Turnstile token. The widget lives in a small
+    // box in the corner and disappears once the check is done.
+    window.spHumanToken = function (siteKey) {
+      return new Promise(function (resolve, reject) {
+        if (!window.turnstile) return reject('turnstile not loaded');
+        var box = document.createElement('div');
+        box.style.cssText = 'position:fixed;left:12px;bottom:12px;z-index:9999';
+        document.body.appendChild(box);
+        var done = function () { setTimeout(function () { box.remove(); }, 0); };
+        window.turnstile.render(box, {
+          sitekey: siteKey,
+          callback: function (token) { done(); resolve(token); },
+          'error-callback': function () { done(); reject('turnstile error'); },
+          'expired-callback': function () { done(); reject('turnstile expired'); },
+        });
+      });
+    };
+  </script>
 </head>
 <body>
   <script>

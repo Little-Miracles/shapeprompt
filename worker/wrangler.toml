@@ -2,10 +2,35 @@ name = "shapeprompt-paypal"
 main = "src/index.js"
 compatibility_date = "2026-10-20"
 
-# Public values. The PayPal secret is NOT here: it is added once in the
-# Cloudflare dashboard (Settings → Variables and Secrets → PAYPAL_SECRET,
-# type Secret) and never leaves Cloudflare.
+# Public values. The secrets are NOT here: they are added once in the
+# Cloudflare dashboard (Settings → Variables and Secrets, type Secret) and
+# never leave Cloudflare:
+#   PAYPAL_SECRET     PayPal app secret
+#   GEMINI_KEY        Google AI Studio key (free tier for the demo)
+#   TURNSTILE_SECRET  Turnstile widget secret (it also signs chat sessions)
 [vars]
 PAYPAL_API = "https://api-m.sandbox.paypal.com"
 PAYPAL_CLIENT_ID = "BAAEB-i3UNDtal48UVT8aKPYaSMW_o9KmAay71E_xYD-htxT3ZYtrv9pkxj7Yb-4eQCD-7NX_7OvYR-hA8"
 ALLOWED_ORIGINS = "https://little-miracles.github.io,http://localhost"
+GEMINI_MODEL = "gemini-2.5-flash"
+MAKER_EMAIL = "axis.mobile.studio@gmail.com"
+
+# Requests per minute from one address, for chat and orders together.
+[[ratelimits]]
+name = "LIMIT"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 12
+  period = 60
+
+# Custom requests from the dragon: kept for half a year, then deleted.
+[[kv_namespaces]]
+binding = "REQUESTS"
+id = "2b25cb5ee1724ad097d4f4f9dd011f7c"
+
+# A note about every new request goes to the maker's own inbox (it must be
+# a verified address in Email Routing of craftaxi.com).
+[[send_email]]
+name = "MAIL"
+destination_address = "axis.mobile.studio@gmail.com"

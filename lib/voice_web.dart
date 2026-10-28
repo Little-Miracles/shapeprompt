@@ -1,3 +1,4 @@
+import 'dart:async';
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 // ignore: avoid_web_libraries_in_flutter
@@ -97,8 +98,22 @@ class Voice {
     html.window.speechSynthesis?.cancel();
   }
 
+  /// People pause while they think: listening ends only after this much
+  /// silence, or after [_maxListen] in all (as in Smart Body Life).
+  static const _pause = Duration(seconds: 5);
+  static const _maxListen = Duration(seconds: 30);
+  Timer? _silence;
+  Timer? _limit;
+
+  /// Bumped when listening is cancelled or started again: a late end of
+  /// an older listening sends nothing.
+  int _listenTurn = 0;
+
+  /// Listens until a pause; [onPartial] shows the words while they come,
+  /// [onResult] gets the whole text at the end.
   void listen(String lang,
       {required void Function(String text) onResult,
+      void Function(String text)? onPartial,
       required void Function() onEnd}) {
     final cls = _recognitionClass;
     if (cls == null) {
@@ -106,28 +121,59 @@ class Voice {
       return;
     }
     stopListening();
+    final turn = ++_listenTurn;
+    var heard = '';
     final r = js.callConstructor<Object>(cls, const []);
     js.setProperty(r, 'lang', _locales[lang] ?? 'en-US');
-    js.setProperty(r, 'interimResults', false);
+    js.setProperty(r, 'continuous', true);
+    js.setProperty(r, 'interimResults', true);
     js.setProperty(r, 'maxAlternatives', 1);
+    void finishAfter(Duration d) {
+      _silence?.cancel();
+      _silence = Timer(d, finishListening);
+    }
+
     js.setProperty(r, 'onresult', js.allowInterop((Object e) {
-      // event.results[0][0].transcript
+      // Everything said so far: event.results[i][0].transcript
       final results = js.getProperty<Object>(e, 'results');
-      final first = js.callMethod<Object>(results, 'item', [0]);
-      final alt = js.callMethod<Object>(first, 'item', [0]);
-      onResult(js.getProperty<String>(alt, 'transcript'));
+      final count = js.getProperty<int>(results, 'length');
+      final parts = <String>[
+        for (var i = 0; i < count; i++)
+          js.getProperty<String>(
+              js.callMethod<Object>(
+                  js.callMethod<Object>(results, 'item', [i]), 'item', [0]),
+              'transcript')
+      ];
+      heard = parts.join(' ').replaceAll(RegExp(r'\s+'), ' ').trim();
+      onPartial?.call(heard);
+      finishAfter(_pause);
     }));
     js.setProperty(r, 'onend', js.allowInterop((Object _) {
-      _recognition = null;
+      _silence?.cancel();
+      _limit?.cancel();
+      if (identical(_recognition, r)) _recognition = null;
+      if (turn == _listenTurn && heard.isNotEmpty) onResult(heard);
       onEnd();
     }));
     _recognition = r;
     js.callMethod<void>(r, 'start', const []);
+    finishAfter(_pause * 2); // a little longer to start speaking
+    _limit = Timer(_maxListen, finishListening);
   }
 
-  void stopListening() {
+  /// Stops and sends what was heard.
+  void finishListening() {
     final r = _recognition;
     if (r != null) js.callMethod<void>(r, 'stop', const []);
+  }
+
+  /// Stops without sending.
+  void stopListening() {
+    _listenTurn++;
+    _silence?.cancel();
+    _limit?.cancel();
+    final r = _recognition;
+    if (r != null) js.callMethod<void>(r, 'abort', const []);
     _recognition = null;
   }
 }

@@ -21,6 +21,7 @@ class _WorkDetailScreenState extends State<WorkDetailScreen> {
   late FilamentMaterial _material = materials[widget.work.materialIds.first]!;
   late FilamentColor _color = _material.colors.first;
   late PrintSize _size = widget.work.sizes.first;
+  Packaging _packaging = packagings.first;
 
   /// While the piece comes alive the page stays empty, so the 3D viewer
   /// doesn't flash before the cover arrives.
@@ -54,6 +55,7 @@ class _WorkDetailScreenState extends State<WorkDetailScreen> {
       size: _size,
       material: _material,
       costs: costs,
+      packaging: _packaging,
       finishingHours: w.finishingHours,
     ).gross;
     final delivery = costs.parcelLockerGross;
@@ -101,6 +103,16 @@ class _WorkDetailScreenState extends State<WorkDetailScreen> {
             onSelect: (label) => setState(() =>
                 _size = w.sizes.firstWhere((s) => _sizeLabel(s) == label)),
           ),
+          const SizedBox(height: 18),
+          const _Label('Box'),
+          _Chips(
+            options: [for (final p in packagings) p.name],
+            selected: _packaging.name,
+            onSelect: (name) => setState(() => _packaging =
+                packagings.firstWhere((p) => p.name == name)),
+          ),
+          const SizedBox(height: 8),
+          Text(_packaging.about, style: SP.body(12)),
           const SizedBox(height: 22),
           Container(
             padding: const EdgeInsets.all(16),
@@ -108,16 +120,16 @@ class _WorkDetailScreenState extends State<WorkDetailScreen> {
             child: Column(
               children: [
                 _PriceRow(
-                    '${w.name} · ${_size.label}\n'
-                    '${_material.name}, ${_color.name}',
+                    '${w.name}\n'
+                    '${_sizeLabel(_size)} · ${_material.name}, ${_color.name}\n'
+                    '${_packaging.name}',
                     piece),
-                _PriceRow('Delivery · InPost parcel locker', delivery),
+                _PriceRow('Delivery · InPost Paczkomat', delivery),
                 const Divider(color: Colors.white24, height: 18),
                 _PriceRow('Total to pay', total, bold: true),
                 // As in Polish shops: the gross price first, then what part
                 // of it is VAT.
                 _PriceRow('incl. VAT 23%', vatOf(total), small: true),
-                _PriceRow('Net', total - vatOf(total), small: true),
                 const SizedBox(height: 8),
                 Text(
                   'All prices include VAT. A VAT invoice is available on '
@@ -140,11 +152,15 @@ class _WorkDetailScreenState extends State<WorkDetailScreen> {
             ),
           ],
           const SizedBox(height: 22),
-          _PayButton(
+          PayButton(
             label: 'Pay with PayPal · ${zl(total)}',
-            title: '${w.name} · ${_material.name} · ${_color.name} · '
-                '${_sizeLabel(_size)}',
-            amount: total,
+            item: {
+              'work': w.id,
+              'material': _material.id,
+              'color': _color.name,
+              'size': _size.label,
+              'box': _packaging.name,
+            },
           ),
           const SizedBox(height: 8),
           Text('Demo mode: PayPal Sandbox. No real money is charged.',
@@ -353,25 +369,24 @@ class _PriceRow extends StatelessWidget {
 }
 
 /// Gold PayPal button: creates the order through our Worker and leaves for
-/// PayPal; the customer comes back to the "Paid" screen.
-class _PayButton extends StatefulWidget {
-  const _PayButton(
-      {required this.label, required this.title, required this.amount});
+/// PayPal; the customer comes back to the "Paid" screen. The dragon's
+/// order card uses it too.
+class PayButton extends StatefulWidget {
+  const PayButton({super.key, required this.label, required this.item});
   final String label;
-  final String title;
-  final double amount;
+  final Map<String, String> item;
 
   @override
-  State<_PayButton> createState() => _PayButtonState();
+  State<PayButton> createState() => _PayButtonState();
 }
 
-class _PayButtonState extends State<_PayButton> {
+class _PayButtonState extends State<PayButton> {
   bool _busy = false;
 
   Future<void> _pay() async {
     setState(() => _busy = true);
     try {
-      await PayPal.checkout(title: widget.title, amount: widget.amount);
+      await PayPal.checkout(widget.item);
     } catch (e) {
       if (!mounted) return;
       setState(() => _busy = false);

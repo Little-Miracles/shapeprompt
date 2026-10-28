@@ -25,7 +25,7 @@ class FilamentMaterial {
   final double density;
   final List<FilamentColor> colors;
 
-  /// The maker is a VAT payer, so her cost is the net price.
+  /// The maker is a VAT payer, so the cost is the net price.
   double get pricePerGramNet => spoolPriceGross / vatRate / spoolGrams;
 }
 
@@ -114,31 +114,71 @@ class ReadyWork {
   final double finishingHours;
 }
 
+/// How the piece travels: a plain box is part of the price, a gift box
+/// costs extra. A bigger figure needs a bigger box.
+class Packaging {
+  const Packaging({
+    required this.name,
+    required this.about,
+    required this.smallNet,
+    required this.largeNet,
+  });
+
+  final String name;
+  final String about;
+  final double smallNet; // zł net, figures up to 12 cm
+  final double largeNet; // zł net
+
+  double costFor(PrintSize size) =>
+      size.heightCm <= 12 ? smallNet : largeNet;
+}
+
 /// The maker's own costs and rates, net of VAT. Edited later in My Workshop.
+/// Approximate until the maker enters real numbers.
 class CostSettings {
   const CostSettings({
     this.electricityPerKwh = 0.85,
     this.printerKw = 0.1,
-    this.wearPerHour = 0.5,
+    this.printerPriceGross = 1700,
+    this.printerLifeHours = 5000,
+    this.upkeepPerHour = 0.10,
     this.wasteShare = 0.10,
     this.laborPerHour = 40,
-    this.box = 3,
+    this.prepHours = 0.25,
     this.failRiskShare = 0.10,
     this.marginShare = 0.20,
+    this.paymentShare = 0.029,
+    this.paymentFixed = 1.35,
     this.parcelLockerGross = 17.99,
   });
 
   final double electricityPerKwh; // zł net
   final double printerKw;
-  final double wearPerHour; // zł
+
+  /// Bambu Lab A1: what it cost and how many print hours it is expected
+  /// to give, so every hour carries its share of the printer.
+  final double printerPriceGross; // zł
+  final double printerLifeHours;
+
+  /// Nozzles, build plates, lubricant.
+  final double upkeepPerHour; // zł net
   final double wasteShare; // supports and purge
-  final double laborPerHour; // zł
-  final double box; // zł net
+  final double laborPerHour; // zł — the maker's own pay
+
+  /// Every order: slicing, printer setup, packing.
+  final double prepHours;
   final double failRiskShare;
-  final double marginShare;
+  final double marginShare; // profit on top of all costs and pay
+
+  /// PayPal Poland, commercial transactions (paypal.com/pl, Jul 2026).
+  final double paymentShare;
+  final double paymentFixed; // zł
 
   /// InPost parcel locker, shown to the customer as a separate line.
   final double parcelLockerGross;
+
+  double get wearPerHour =>
+      printerPriceGross / vatRate / printerLifeHours + upkeepPerHour;
 }
 
 /// The maker's breakdown (net). The customer sees only [gross].
@@ -150,16 +190,22 @@ class Quote {
     required this.box,
     required this.risk,
     required this.margin,
+    required this.payment,
   });
 
   final double filament;
   final double printerTime;
+
+  /// The maker's pay: finishing plus preparing the order.
   final double labor;
   final double box;
   final double risk;
   final double margin;
 
-  double get cost => filament + printerTime + labor + box;
+  /// The PayPal fee, so it doesn't come out of the maker's pay.
+  final double payment;
+
+  double get cost => filament + printerTime + labor + box + payment;
   double get net => cost + risk + margin;
   double get vat => gross - net;
 

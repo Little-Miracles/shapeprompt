@@ -3,7 +3,7 @@ import 'dart:ui' show Color;
 import 'models.dart';
 
 /// My Materials. Spool prices are typical Polish shop prices (Oct 2026)
-/// until the maker adds her own receipts.
+/// until the maker adds their own receipts.
 const materials = <String, FilamentMaterial>{
   'pla_basic': FilamentMaterial(
     id: 'pla_basic',
@@ -52,6 +52,22 @@ const moreMaterialsNote = 'These are the main materials. Many more are '
 
 const costs = CostSettings();
 
+/// Box prices are approximate Allegro prices (Oct 2026), net.
+const packagings = <Packaging>[
+  Packaging(
+    name: 'Simple box',
+    about: 'A sturdy cardboard box with soft padding. Included in the price.',
+    smallNet: 3,
+    largeNet: 5,
+  ),
+  Packaging(
+    name: 'Gift box',
+    about: 'A gift box with a lid and tissue paper, ready to give.',
+    smallNet: 10,
+    largeNet: 15,
+  ),
+];
+
 /// Ready works — pieces the maker has already modeled and printed.
 /// Grams and hours must come from Bambu Studio (fromSlicer: true).
 const readyWorks = <ReadyWork>[
@@ -64,7 +80,7 @@ const readyWorks = <ReadyWork>[
     modelImage: 'assets/works/dragon_model.png',
     model: 'assets/works/dragon.glb',
     motion: Motion('assets/anim/dragon', 36),
-    materialIds: ['pla_silk', 'pla_basic'],
+    materialIds: ['pla_basic', 'pla_silk'],
     finishingHours: 1,
     sizes: [
       // TODO(Nataliia): grams and hours from Bambu Studio.
@@ -81,7 +97,7 @@ const readyWorks = <ReadyWork>[
     modelImage: 'assets/works/goat_model.png',
     model: 'assets/works/goat.glb',
     motion: Motion('assets/anim/goat', 36),
-    materialIds: ['pla_silk', 'pla_basic'],
+    materialIds: ['pla_basic', 'pla_silk'],
     finishingHours: 1,
     sizes: [
       // TODO(Nataliia): grams and hours from Bambu Studio.

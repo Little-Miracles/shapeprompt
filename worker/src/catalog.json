@@ -1,0 +1,1744 @@
+{
+  "delivery": 17.99,
+  "boxes": [
+    {
+      "name": "Simple box",
+      "about": "A sturdy cardboard box with soft padding. Included in the price."
+    },
+    {
+      "name": "Gift box",
+      "about": "A gift box with a lid and tissue paper, ready to give."
+    }
+  ],
+  "moreMaterials": "These are the main materials. Many more are available on request — flexible rubber-like TPU, translucent, glow-in-the-dark and others.",
+  "allMaterials": [
+    {
+      "id": "pla_basic",
+      "name": "PLA Basic",
+      "about": "The everyday choice. Matte, good detail, the most affordable.",
+      "colors": [
+        "Gold",
+        "Bronze",
+        "Black",
+        "White",
+        "Red"
+      ]
+    },
+    {
+      "id": "pla_silk",
+      "name": "PLA Silk",
+      "about": "A silky metallic shine — made for gold and bronze figurines.",
+      "colors": [
+        "Gold",
+        "Silver",
+        "Copper"
+      ]
+    },
+    {
+      "id": "petg",
+      "name": "PETG",
+      "about": "Strong and water-resistant: for flower pots and things used outdoors.",
+      "colors": [
+        "Black",
+        "White",
+        "Clear"
+      ]
+    }
+  ],
+  "works": [
+    {
+      "id": "dragon",
+      "name": "Golden Dragon",
+      "story": "Born as a picture, turned into a 3D model, printed on a home printer. The dragon from the ShapePrompt logo.",
+      "materials": [
+        {
+          "id": "pla_basic",
+          "name": "PLA Basic",
+          "about": "The everyday choice. Matte, good detail, the most affordable.",
+          "colors": [
+            "Gold",
+            "Bronze",
+            "Black",
+            "White",
+            "Red"
+          ]
+        },
+        {
+          "id": "pla_silk",
+          "name": "PLA Silk",
+          "about": "A silky metallic shine — made for gold and bronze figurines.",
+          "colors": [
+            "Gold",
+            "Silver",
+            "Copper"
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "label": "Small",
+          "cm": 10.0
+        },
+        {
+          "label": "Large",
+          "cm": 20.0
+        }
+      ],
+      "prices": [
+        {
+          "material": "pla_basic",
+          "size": "Small",
+          "box": "Simple box",
+          "price": 98.0
+        },
+        {
+          "material": "pla_basic",
+          "size": "Small",
+          "box": "Gift box",
+          "price": 110.0
+        },
+        {
+          "material": "pla_basic",
+          "size": "Large",
+          "box": "Simple box",
+          "price": 124.0
+        },
+        {
+          "material": "pla_basic",
+          "size": "Large",
+          "box": "Gift box",
+          "price": 141.0
+        },
+        {
+          "material": "pla_silk",
+          "size": "Small",
+          "box": "Simple box",
+          "price": 101.0
+        },
+        {
+          "material": "pla_silk",
+          "size": "Small",
+          "box": "Gift box",
+          "price": 112.0
+        },
+        {
+          "material": "pla_silk",
+          "size": "Large",
+          "box": "Simple box",
+          "price": 136.0
+        },
+        {
+          "material": "pla_silk",
+          "size": "Large",
+          "box": "Gift box",
+          "price": 153.0
+        }
+      ],
+      "custom": [
+        {
+          "material": "pla_basic",
+          "cm": 5,
+          "box": "Simple box",
+          "price": 92.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 5,
+          "box": "Gift box",
+          "price": 104.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 6,
+          "box": "Simple box",
+          "price": 93.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 6,
+          "box": "Gift box",
+          "price": 105.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 7,
+          "box": "Simple box",
+          "price": 94.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 7,
+          "box": "Gift box",
+          "price": 106.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 8,
+          "box": "Simple box",
+          "price": 95.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 8,
+          "box": "Gift box",
+          "price": 107.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 9,
+          "box": "Simple box",
+          "price": 96.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 9,
+          "box": "Gift box",
+          "price": 108.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 10,
+          "box": "Simple box",
+          "price": 98.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 10,
+          "box": "Gift box",
+          "price": 110.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 11,
+          "box": "Simple box",
+          "price": 100.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 11,
+          "box": "Gift box",
+          "price": 112.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 12,
+          "box": "Simple box",
+          "price": 103.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 12,
+          "box": "Gift box",
+          "price": 115.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 13,
+          "box": "Simple box",
+          "price": 109.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 13,
+          "box": "Gift box",
+          "price": 126.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 14,
+          "box": "Simple box",
+          "price": 113.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 14,
+          "box": "Gift box",
+          "price": 129.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 15,
+          "box": "Simple box",
+          "price": 116.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 15,
+          "box": "Gift box",
+          "price": 133.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 16,
+          "box": "Simple box",
+          "price": 111.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 16,
+          "box": "Gift box",
+          "price": 127.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 17,
+          "box": "Simple box",
+          "price": 114.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 17,
+          "box": "Gift box",
+          "price": 130.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 18,
+          "box": "Simple box",
+          "price": 117.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 18,
+          "box": "Gift box",
+          "price": 134.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 19,
+          "box": "Simple box",
+          "price": 120.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 19,
+          "box": "Gift box",
+          "price": 137.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 20,
+          "box": "Simple box",
+          "price": 124.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 20,
+          "box": "Gift box",
+          "price": 141.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 21,
+          "box": "Simple box",
+          "price": 129.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 21,
+          "box": "Gift box",
+          "price": 146.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 22,
+          "box": "Simple box",
+          "price": 134.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 22,
+          "box": "Gift box",
+          "price": 150.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 23,
+          "box": "Simple box",
+          "price": 139.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 23,
+          "box": "Gift box",
+          "price": 156.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 24,
+          "box": "Simple box",
+          "price": 145.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 24,
+          "box": "Gift box",
+          "price": 161.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 25,
+          "box": "Simple box",
+          "price": 151.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 25,
+          "box": "Gift box",
+          "price": 167.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 5,
+          "box": "Simple box",
+          "price": 93.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 5,
+          "box": "Gift box",
+          "price": 104.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 6,
+          "box": "Simple box",
+          "price": 93.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 6,
+          "box": "Gift box",
+          "price": 105.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 7,
+          "box": "Simple box",
+          "price": 95.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 7,
+          "box": "Gift box",
+          "price": 106.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 8,
+          "box": "Simple box",
+          "price": 96.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 8,
+          "box": "Gift box",
+          "price": 108.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 9,
+          "box": "Simple box",
+          "price": 98.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 9,
+          "box": "Gift box",
+          "price": 110.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 10,
+          "box": "Simple box",
+          "price": 101.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 10,
+          "box": "Gift box",
+          "price": 112.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 11,
+          "box": "Simple box",
+          "price": 104.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 11,
+          "box": "Gift box",
+          "price": 115.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 12,
+          "box": "Simple box",
+          "price": 107.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 12,
+          "box": "Gift box",
+          "price": 119.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 13,
+          "box": "Simple box",
+          "price": 115.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 13,
+          "box": "Gift box",
+          "price": 131.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 14,
+          "box": "Simple box",
+          "price": 119.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 14,
+          "box": "Gift box",
+          "price": 136.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 15,
+          "box": "Simple box",
+          "price": 125.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 15,
+          "box": "Gift box",
+          "price": 142.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 16,
+          "box": "Simple box",
+          "price": 116.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 16,
+          "box": "Gift box",
+          "price": 133.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 17,
+          "box": "Simple box",
+          "price": 120.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 17,
+          "box": "Gift box",
+          "price": 137.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 18,
+          "box": "Simple box",
+          "price": 125.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 18,
+          "box": "Gift box",
+          "price": 142.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 19,
+          "box": "Simple box",
+          "price": 130.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 19,
+          "box": "Gift box",
+          "price": 147.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 20,
+          "box": "Simple box",
+          "price": 136.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 20,
+          "box": "Gift box",
+          "price": 153.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 21,
+          "box": "Simple box",
+          "price": 142.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 21,
+          "box": "Gift box",
+          "price": 159.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 22,
+          "box": "Simple box",
+          "price": 149.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 22,
+          "box": "Gift box",
+          "price": 166.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 23,
+          "box": "Simple box",
+          "price": 156.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 23,
+          "box": "Gift box",
+          "price": 173.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 24,
+          "box": "Simple box",
+          "price": 164.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 24,
+          "box": "Gift box",
+          "price": 181.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 25,
+          "box": "Simple box",
+          "price": 173.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 25,
+          "box": "Gift box",
+          "price": 190.0
+        },
+        {
+          "material": "petg",
+          "cm": 5,
+          "box": "Simple box",
+          "price": 93.0
+        },
+        {
+          "material": "petg",
+          "cm": 5,
+          "box": "Gift box",
+          "price": 104.0
+        },
+        {
+          "material": "petg",
+          "cm": 6,
+          "box": "Simple box",
+          "price": 93.0
+        },
+        {
+          "material": "petg",
+          "cm": 6,
+          "box": "Gift box",
+          "price": 105.0
+        },
+        {
+          "material": "petg",
+          "cm": 7,
+          "box": "Simple box",
+          "price": 95.0
+        },
+        {
+          "material": "petg",
+          "cm": 7,
+          "box": "Gift box",
+          "price": 106.0
+        },
+        {
+          "material": "petg",
+          "cm": 8,
+          "box": "Simple box",
+          "price": 96.0
+        },
+        {
+          "material": "petg",
+          "cm": 8,
+          "box": "Gift box",
+          "price": 108.0
+        },
+        {
+          "material": "petg",
+          "cm": 9,
+          "box": "Simple box",
+          "price": 98.0
+        },
+        {
+          "material": "petg",
+          "cm": 9,
+          "box": "Gift box",
+          "price": 110.0
+        },
+        {
+          "material": "petg",
+          "cm": 10,
+          "box": "Simple box",
+          "price": 100.0
+        },
+        {
+          "material": "petg",
+          "cm": 10,
+          "box": "Gift box",
+          "price": 112.0
+        },
+        {
+          "material": "petg",
+          "cm": 11,
+          "box": "Simple box",
+          "price": 103.0
+        },
+        {
+          "material": "petg",
+          "cm": 11,
+          "box": "Gift box",
+          "price": 115.0
+        },
+        {
+          "material": "petg",
+          "cm": 12,
+          "box": "Simple box",
+          "price": 107.0
+        },
+        {
+          "material": "petg",
+          "cm": 12,
+          "box": "Gift box",
+          "price": 119.0
+        },
+        {
+          "material": "petg",
+          "cm": 13,
+          "box": "Simple box",
+          "price": 114.0
+        },
+        {
+          "material": "petg",
+          "cm": 13,
+          "box": "Gift box",
+          "price": 131.0
+        },
+        {
+          "material": "petg",
+          "cm": 14,
+          "box": "Simple box",
+          "price": 119.0
+        },
+        {
+          "material": "petg",
+          "cm": 14,
+          "box": "Gift box",
+          "price": 136.0
+        },
+        {
+          "material": "petg",
+          "cm": 15,
+          "box": "Simple box",
+          "price": 124.0
+        },
+        {
+          "material": "petg",
+          "cm": 15,
+          "box": "Gift box",
+          "price": 141.0
+        },
+        {
+          "material": "petg",
+          "cm": 16,
+          "box": "Simple box",
+          "price": 116.0
+        },
+        {
+          "material": "petg",
+          "cm": 16,
+          "box": "Gift box",
+          "price": 133.0
+        },
+        {
+          "material": "petg",
+          "cm": 17,
+          "box": "Simple box",
+          "price": 120.0
+        },
+        {
+          "material": "petg",
+          "cm": 17,
+          "box": "Gift box",
+          "price": 137.0
+        },
+        {
+          "material": "petg",
+          "cm": 18,
+          "box": "Simple box",
+          "price": 124.0
+        },
+        {
+          "material": "petg",
+          "cm": 18,
+          "box": "Gift box",
+          "price": 141.0
+        },
+        {
+          "material": "petg",
+          "cm": 19,
+          "box": "Simple box",
+          "price": 129.0
+        },
+        {
+          "material": "petg",
+          "cm": 19,
+          "box": "Gift box",
+          "price": 146.0
+        },
+        {
+          "material": "petg",
+          "cm": 20,
+          "box": "Simple box",
+          "price": 135.0
+        },
+        {
+          "material": "petg",
+          "cm": 20,
+          "box": "Gift box",
+          "price": 151.0
+        },
+        {
+          "material": "petg",
+          "cm": 21,
+          "box": "Simple box",
+          "price": 141.0
+        },
+        {
+          "material": "petg",
+          "cm": 21,
+          "box": "Gift box",
+          "price": 157.0
+        },
+        {
+          "material": "petg",
+          "cm": 22,
+          "box": "Simple box",
+          "price": 147.0
+        },
+        {
+          "material": "petg",
+          "cm": 22,
+          "box": "Gift box",
+          "price": 164.0
+        },
+        {
+          "material": "petg",
+          "cm": 23,
+          "box": "Simple box",
+          "price": 154.0
+        },
+        {
+          "material": "petg",
+          "cm": 23,
+          "box": "Gift box",
+          "price": 171.0
+        },
+        {
+          "material": "petg",
+          "cm": 24,
+          "box": "Simple box",
+          "price": 162.0
+        },
+        {
+          "material": "petg",
+          "cm": 24,
+          "box": "Gift box",
+          "price": 179.0
+        },
+        {
+          "material": "petg",
+          "cm": 25,
+          "box": "Simple box",
+          "price": 170.0
+        },
+        {
+          "material": "petg",
+          "cm": 25,
+          "box": "Gift box",
+          "price": 187.0
+        }
+      ]
+    },
+    {
+      "id": "goat",
+      "name": "Fire Goat",
+      "story": "A spirited goat with flaming mane and tail — a symbol of the coming year.",
+      "materials": [
+        {
+          "id": "pla_basic",
+          "name": "PLA Basic",
+          "about": "The everyday choice. Matte, good detail, the most affordable.",
+          "colors": [
+            "Gold",
+            "Bronze",
+            "Black",
+            "White",
+            "Red"
+          ]
+        },
+        {
+          "id": "pla_silk",
+          "name": "PLA Silk",
+          "about": "A silky metallic shine — made for gold and bronze figurines.",
+          "colors": [
+            "Gold",
+            "Silver",
+            "Copper"
+          ]
+        }
+      ],
+      "sizes": [
+        {
+          "label": "Small",
+          "cm": 10.0
+        },
+        {
+          "label": "Large",
+          "cm": 20.0
+        }
+      ],
+      "prices": [
+        {
+          "material": "pla_basic",
+          "size": "Small",
+          "box": "Simple box",
+          "price": 99.0
+        },
+        {
+          "material": "pla_basic",
+          "size": "Small",
+          "box": "Gift box",
+          "price": 111.0
+        },
+        {
+          "material": "pla_basic",
+          "size": "Large",
+          "box": "Simple box",
+          "price": 127.0
+        },
+        {
+          "material": "pla_basic",
+          "size": "Large",
+          "box": "Gift box",
+          "price": 144.0
+        },
+        {
+          "material": "pla_silk",
+          "size": "Small",
+          "box": "Simple box",
+          "price": 102.0
+        },
+        {
+          "material": "pla_silk",
+          "size": "Small",
+          "box": "Gift box",
+          "price": 114.0
+        },
+        {
+          "material": "pla_silk",
+          "size": "Large",
+          "box": "Simple box",
+          "price": 140.0
+        },
+        {
+          "material": "pla_silk",
+          "size": "Large",
+          "box": "Gift box",
+          "price": 157.0
+        }
+      ],
+      "custom": [
+        {
+          "material": "pla_basic",
+          "cm": 5,
+          "box": "Simple box",
+          "price": 92.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 5,
+          "box": "Gift box",
+          "price": 104.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 6,
+          "box": "Simple box",
+          "price": 93.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 6,
+          "box": "Gift box",
+          "price": 105.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 7,
+          "box": "Simple box",
+          "price": 94.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 7,
+          "box": "Gift box",
+          "price": 106.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 8,
+          "box": "Simple box",
+          "price": 95.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 8,
+          "box": "Gift box",
+          "price": 107.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 9,
+          "box": "Simple box",
+          "price": 97.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 9,
+          "box": "Gift box",
+          "price": 109.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 10,
+          "box": "Simple box",
+          "price": 99.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 10,
+          "box": "Gift box",
+          "price": 111.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 11,
+          "box": "Simple box",
+          "price": 102.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 11,
+          "box": "Gift box",
+          "price": 113.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 12,
+          "box": "Simple box",
+          "price": 104.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 12,
+          "box": "Gift box",
+          "price": 116.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 13,
+          "box": "Simple box",
+          "price": 111.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 13,
+          "box": "Gift box",
+          "price": 128.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 14,
+          "box": "Simple box",
+          "price": 115.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 14,
+          "box": "Gift box",
+          "price": 132.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 15,
+          "box": "Simple box",
+          "price": 119.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 15,
+          "box": "Gift box",
+          "price": 136.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 16,
+          "box": "Simple box",
+          "price": 112.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 16,
+          "box": "Gift box",
+          "price": 129.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 17,
+          "box": "Simple box",
+          "price": 115.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 17,
+          "box": "Gift box",
+          "price": 132.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 18,
+          "box": "Simple box",
+          "price": 119.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 18,
+          "box": "Gift box",
+          "price": 136.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 19,
+          "box": "Simple box",
+          "price": 123.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 19,
+          "box": "Gift box",
+          "price": 140.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 20,
+          "box": "Simple box",
+          "price": 127.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 20,
+          "box": "Gift box",
+          "price": 144.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 21,
+          "box": "Simple box",
+          "price": 132.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 21,
+          "box": "Gift box",
+          "price": 149.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 22,
+          "box": "Simple box",
+          "price": 137.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 22,
+          "box": "Gift box",
+          "price": 154.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 23,
+          "box": "Simple box",
+          "price": 143.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 23,
+          "box": "Gift box",
+          "price": 160.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 24,
+          "box": "Simple box",
+          "price": 149.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 24,
+          "box": "Gift box",
+          "price": 166.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 25,
+          "box": "Simple box",
+          "price": 156.0
+        },
+        {
+          "material": "pla_basic",
+          "cm": 25,
+          "box": "Gift box",
+          "price": 173.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 5,
+          "box": "Simple box",
+          "price": 93.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 5,
+          "box": "Gift box",
+          "price": 105.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 6,
+          "box": "Simple box",
+          "price": 94.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 6,
+          "box": "Gift box",
+          "price": 106.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 7,
+          "box": "Simple box",
+          "price": 95.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 7,
+          "box": "Gift box",
+          "price": 107.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 8,
+          "box": "Simple box",
+          "price": 97.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 8,
+          "box": "Gift box",
+          "price": 109.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 9,
+          "box": "Simple box",
+          "price": 99.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 9,
+          "box": "Gift box",
+          "price": 111.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 10,
+          "box": "Simple box",
+          "price": 102.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 10,
+          "box": "Gift box",
+          "price": 114.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 11,
+          "box": "Simple box",
+          "price": 105.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 11,
+          "box": "Gift box",
+          "price": 117.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 12,
+          "box": "Simple box",
+          "price": 109.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 12,
+          "box": "Gift box",
+          "price": 121.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 13,
+          "box": "Simple box",
+          "price": 117.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 13,
+          "box": "Gift box",
+          "price": 134.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 14,
+          "box": "Simple box",
+          "price": 123.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 14,
+          "box": "Gift box",
+          "price": 139.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 15,
+          "box": "Simple box",
+          "price": 129.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 15,
+          "box": "Gift box",
+          "price": 146.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 16,
+          "box": "Simple box",
+          "price": 119.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 16,
+          "box": "Gift box",
+          "price": 135.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 17,
+          "box": "Simple box",
+          "price": 123.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 17,
+          "box": "Gift box",
+          "price": 140.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 18,
+          "box": "Simple box",
+          "price": 128.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 18,
+          "box": "Gift box",
+          "price": 145.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 19,
+          "box": "Simple box",
+          "price": 134.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 19,
+          "box": "Gift box",
+          "price": 151.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 20,
+          "box": "Simple box",
+          "price": 140.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 20,
+          "box": "Gift box",
+          "price": 157.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 21,
+          "box": "Simple box",
+          "price": 147.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 21,
+          "box": "Gift box",
+          "price": 164.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 22,
+          "box": "Simple box",
+          "price": 154.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 22,
+          "box": "Gift box",
+          "price": 171.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 23,
+          "box": "Simple box",
+          "price": 162.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 23,
+          "box": "Gift box",
+          "price": 179.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 24,
+          "box": "Simple box",
+          "price": 171.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 24,
+          "box": "Gift box",
+          "price": 188.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 25,
+          "box": "Simple box",
+          "price": 181.0
+        },
+        {
+          "material": "pla_silk",
+          "cm": 25,
+          "box": "Gift box",
+          "price": 197.0
+        },
+        {
+          "material": "petg",
+          "cm": 5,
+          "box": "Simple box",
+          "price": 93.0
+        },
+        {
+          "material": "petg",
+          "cm": 5,
+          "box": "Gift box",
+          "price": 105.0
+        },
+        {
+          "material": "petg",
+          "cm": 6,
+          "box": "Simple box",
+          "price": 94.0
+        },
+        {
+          "material": "petg",
+          "cm": 6,
+          "box": "Gift box",
+          "price": 105.0
+        },
+        {
+          "material": "petg",
+          "cm": 7,
+          "box": "Simple box",
+          "price": 95.0
+        },
+        {
+          "material": "petg",
+          "cm": 7,
+          "box": "Gift box",
+          "price": 107.0
+        },
+        {
+          "material": "petg",
+          "cm": 8,
+          "box": "Simple box",
+          "price": 97.0
+        },
+        {
+          "material": "petg",
+          "cm": 8,
+          "box": "Gift box",
+          "price": 109.0
+        },
+        {
+          "material": "petg",
+          "cm": 9,
+          "box": "Simple box",
+          "price": 99.0
+        },
+        {
+          "material": "petg",
+          "cm": 9,
+          "box": "Gift box",
+          "price": 111.0
+        },
+        {
+          "material": "petg",
+          "cm": 10,
+          "box": "Simple box",
+          "price": 102.0
+        },
+        {
+          "material": "petg",
+          "cm": 10,
+          "box": "Gift box",
+          "price": 113.0
+        },
+        {
+          "material": "petg",
+          "cm": 11,
+          "box": "Simple box",
+          "price": 105.0
+        },
+        {
+          "material": "petg",
+          "cm": 11,
+          "box": "Gift box",
+          "price": 117.0
+        },
+        {
+          "material": "petg",
+          "cm": 12,
+          "box": "Simple box",
+          "price": 109.0
+        },
+        {
+          "material": "petg",
+          "cm": 12,
+          "box": "Gift box",
+          "price": 121.0
+        },
+        {
+          "material": "petg",
+          "cm": 13,
+          "box": "Simple box",
+          "price": 117.0
+        },
+        {
+          "material": "petg",
+          "cm": 13,
+          "box": "Gift box",
+          "price": 133.0
+        },
+        {
+          "material": "petg",
+          "cm": 14,
+          "box": "Simple box",
+          "price": 122.0
+        },
+        {
+          "material": "petg",
+          "cm": 14,
+          "box": "Gift box",
+          "price": 139.0
+        },
+        {
+          "material": "petg",
+          "cm": 15,
+          "box": "Simple box",
+          "price": 128.0
+        },
+        {
+          "material": "petg",
+          "cm": 15,
+          "box": "Gift box",
+          "price": 145.0
+        },
+        {
+          "material": "petg",
+          "cm": 16,
+          "box": "Simple box",
+          "price": 118.0
+        },
+        {
+          "material": "petg",
+          "cm": 16,
+          "box": "Gift box",
+          "price": 135.0
+        },
+        {
+          "material": "petg",
+          "cm": 17,
+          "box": "Simple box",
+          "price": 122.0
+        },
+        {
+          "material": "petg",
+          "cm": 17,
+          "box": "Gift box",
+          "price": 139.0
+        },
+        {
+          "material": "petg",
+          "cm": 18,
+          "box": "Simple box",
+          "price": 127.0
+        },
+        {
+          "material": "petg",
+          "cm": 18,
+          "box": "Gift box",
+          "price": 144.0
+        },
+        {
+          "material": "petg",
+          "cm": 19,
+          "box": "Simple box",
+          "price": 133.0
+        },
+        {
+          "material": "petg",
+          "cm": 19,
+          "box": "Gift box",
+          "price": 149.0
+        },
+        {
+          "material": "petg",
+          "cm": 20,
+          "box": "Simple box",
+          "price": 139.0
+        },
+        {
+          "material": "petg",
+          "cm": 20,
+          "box": "Gift box",
+          "price": 155.0
+        },
+        {
+          "material": "petg",
+          "cm": 21,
+          "box": "Simple box",
+          "price": 145.0
+        },
+        {
+          "material": "petg",
+          "cm": 21,
+          "box": "Gift box",
+          "price": 162.0
+        },
+        {
+          "material": "petg",
+          "cm": 22,
+          "box": "Simple box",
+          "price": 152.0
+        },
+        {
+          "material": "petg",
+          "cm": 22,
+          "box": "Gift box",
+          "price": 169.0
+        },
+        {
+          "material": "petg",
+          "cm": 23,
+          "box": "Simple box",
+          "price": 160.0
+        },
+        {
+          "material": "petg",
+          "cm": 23,
+          "box": "Gift box",
+          "price": 177.0
+        },
+        {
+          "material": "petg",
+          "cm": 24,
+          "box": "Simple box",
+          "price": 169.0
+        },
+        {
+          "material": "petg",
+          "cm": 24,
+          "box": "Gift box",
+          "price": 186.0
+        },
+        {
+          "material": "petg",
+          "cm": 25,
+          "box": "Simple box",
+          "price": 178.0
+        },
+        {
+          "material": "petg",
+          "cm": 25,
+          "box": "Gift box",
+          "price": 195.0
+        }
+      ]
+    }
+  ]
+}

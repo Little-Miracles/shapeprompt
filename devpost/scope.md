@@ -10,18 +10,18 @@ Turn a photo or an idea into a real 3D print. AI clarifies and sketches, the cod
 ## The Unique Kernel
 AI understands, code counts, the maker makes.
 
-**An honest price, not a guess.** The price is calculated by code from the maker's real costs: the filament she actually bought (price per gram from her order), grams and print hours from her slicer, electricity, her hourly rate for modeling and finishing. AI never invents a price and never pretends to make the model: it talks to the customer, clarifies the order, draws sketches and writes the order card. The 3D model and the print are made by a real person.
+**An honest price, not a guess.** The price is calculated by code from the maker's real costs: the filament actually bought (price per gram from the real order), grams and print hours from the slicer, electricity, the maker's hourly rate for modeling and finishing. AI never invents a price and never pretends to make the model: it talks to the customer, clarifies the order, draws sketches and writes the order card. The 3D model and the print are made by a real person.
 
 ## Who It's For
 Two people on two sides of one order:
 - **The customer** wants a custom object (a figurine, a gift, a small part) but cannot model in 3D and does not know what it should cost.
-- **The maker** (the learner herself, with a home 3D printer) loses time on back-and-forth messages, manual price calculations and chasing payments.
+- **The maker** (the learner, with a home 3D printer) loses time on back-and-forth messages, manual price calculations and chasing payments.
 
 ## The Core Loop
 Customer opens ShapePrompt → picks one of three paths:
 - **A. Ready works** — the maker's real printed pieces (dragon, goat…) with photos. Pick material, color and a fixed size → a fixed price with VAT, delivery as a separate line → pay with PayPal → status **Paid**.
   - **Shop assistant (agentic commerce):** the customer can just write "a shiny dragon as a gift, up to 100 zł". The AI assistant picks the work, material and size from the catalog, shows the summary, and after the customer says yes it **creates the PayPal order itself** — the customer only presses Pay. The price still comes from code; the assistant chooses only among real options.
-- **B. Custom order from a picture** — upload a photo or drawing and write wishes → AI turns the message into a neat order card → the maker gets a notification → in **My Workshop** she enters grams and print hours → code calculates the price → PayPal invoice → paid.
+- **B. Custom order from a picture** — upload a photo or drawing and write wishes → AI turns the message into a neat order card → the maker gets a notification → in **My Workshop** the maker enters grams and print hours → code calculates the price → PayPal invoice → paid.
 - **C. Sketch from an idea** — describe the idea in words → pay a small fixed sketch fee with PayPal → AI draws 2–3 sketches → the customer picks one → it becomes a custom order (path B).
 
 On the sketch screen, next to the pay button:
@@ -37,7 +37,7 @@ On the sketch screen, next to the pay button:
 Logo: a golden dragon shaped like the letter S inside a hexagon crystal, with printer nozzles — the learner's own dragon, which went through exactly this path (picture → 3D model → print). Colors: "wet asphalt" background #1E2226, gold, emerald, purple flowing into each other through highlights. Feel: a jeweler's box — dark velvet, glowing gold.
 
 ## Why This Matters to the Learner
-Her own way to earn with 3D printing. She has already made custom work for a client abroad and priced it by hand; ShapePrompt turns that into a repeatable service. Later it moves onto her website, under ART & 3D.
+The maker's own way to earn with 3D printing. The maker has already made custom work for a client abroad and priced it by hand; ShapePrompt turns that into a repeatable service. Later it moves onto the maker's own website, craftaxi.com.
 
 ## What "Working" Looks Like
 A judge can do it alone, without waiting for the maker:
@@ -55,13 +55,13 @@ Each step is a working app on its own, so there is always something to submit:
 ## The POC Boundary
 - Start screen with the logo → home screen with the three paths.
 - Interface in English with on-the-fly translation (online, no built-in translation files).
-- **My Materials**: the maker adds a spool (material type, color, price, weight) → code calculates price per gram. The price depends mostly on the material type, not the color: standard PLA is cheaper than PETG (water-resistant, e.g. for flower pots) or heat-resistant materials. Material prices are taken from the maker's real orders (e.g. Allegro); the app shows "Material prices based on the maker's current suppliers". A color she does not have → "other color, on request", she enters the price of the spool to buy (to be refined later).
+- **My Materials**: the maker adds a spool (material type, color, price, weight) → code calculates price per gram. The price depends mostly on the material type, not the color: standard PLA is cheaper than PETG (water-resistant, e.g. for flower pots) or heat-resistant materials. Material prices are taken from the maker's real orders (e.g. Allegro); the app shows "Material prices based on the maker's current suppliers". A color the maker does not have → "other color, on request", the maker enters the price of the spool to buy (to be refined later).
 - Price calculator: filament (grams × price per gram + ~10% supports/waste), printer time (hours × electricity + wear), labor (hours × rate), packaging, ~10% failed-print risk, margin.
 - AI: turns the customer's message into an order card, translates messages, draws sketches.
 - Email notification to the maker about a new order.
 - PayPal (Sandbox) through a Cloudflare server; no keys inside the app.
 - Three packages; shipping rule: prints Poland only, files worldwide.
-- **The customer sees a final price, not the breakdown.** Electricity, labor, risk and margin stay in My Workshop. The customer sees: the piece (fixed size, chosen material) with 23% VAT included, and delivery (box + InPost parcel locker) as a separate line. The maker is a VAT payer: her costs are counted net.
+- **The customer sees a final price, not the breakdown.** Electricity, labor, risk and margin stay in My Workshop. The customer sees: the piece (fixed size, chosen material) with 23% VAT included, and delivery (box + InPost parcel locker) as a separate line. The maker is a VAT payer: costs are counted net.
 - **Materials for customers:** 3–4 main filaments with a short note each (PLA Basic — affordable, fewer colors; PLA Silk — metallic shine; PETG — water-resistant, also clear), plus "many more on request: flexible TPU, translucent, glow-in-the-dark…".
 
 ## Later

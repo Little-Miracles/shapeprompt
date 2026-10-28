@@ -11,9 +11,11 @@ class Voice {
 
   void listen(String lang,
       {required void Function(String text) onResult,
+      void Function(String text)? onPartial,
       required void Function() onEnd}) {
     onEnd();
   }
 
+  void finishListening() {}
   void stopListening() {}
 }

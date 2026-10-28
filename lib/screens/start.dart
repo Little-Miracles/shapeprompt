@@ -88,17 +88,26 @@ class _GoldButtonState extends State<GoldButton>
         child: InkWell(
           borderRadius: BorderRadius.circular(40),
           onTap: widget.onTap,
-          child: Ink(
-            width: 220,
-            height: 56,
-            decoration: BoxDecoration(
-              gradient: SP.goldGradient,
-              borderRadius: BorderRadius.circular(40),
-            ),
-            child: Center(
-              child: Text(
-                widget.label,
-                style: SP.title(20, color: SP.asphaltDeep),
+          // At least 220 wide, wider when a translation is longer.
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minWidth: 220),
+            child: Ink(
+              height: 56,
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              decoration: BoxDecoration(
+                gradient: SP.goldGradient,
+                borderRadius: BorderRadius.circular(40),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.label,
+                    maxLines: 1,
+                    style: SP.title(20, color: SP.asphaltDeep),
+                  ),
+                ],
               ),
             ),
           ),

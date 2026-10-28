@@ -63,15 +63,15 @@ class _PaidScreenState extends State<PaidScreen> {
             Text('Thank you! Your order is paid.',
                 textAlign: TextAlign.center, style: SP.title(24)),
             const SizedBox(height: 16),
-            _line('Order', _order?['title'] as String? ?? ''),
+            _line('Your order', _order?['title'] as String? ?? ''),
             _line(
-                'Paid',
+                'Total paid',
                 zl(double.parse(
                     (_result!['amount']?['value'] ?? '0').toString()))),
-            _line('PayPal order', _result!['id'] as String? ?? ''),
+            _line('PayPal order number', _result!['id'] as String? ?? ''),
             const SizedBox(height: 12),
             Text(
-              'The maker will start printing and send you a message '
+              'Our master will start printing and will write to you '
               'when the parcel is on its way.',
               textAlign: TextAlign.center,
               style: SP.body(13, color: SP.text),
@@ -101,7 +101,7 @@ class _PaidScreenState extends State<PaidScreen> {
           if (!busy)
             Center(
               child: GoldButton(
-                label: 'Back to ShapePrompt',
+                label: 'Back to the shop',
                 onTap: () => Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (_) => const StartScreen())),
               ),

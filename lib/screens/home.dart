@@ -7,6 +7,7 @@ import '../tr_text.dart';
 import '../widgets/motion_splash.dart';
 import 'helper.dart';
 import 'ice_welcome.dart';
+import 'new_work.dart';
 import 'ready_works.dart';
 
 /// The three ways to order — the one screen that looks unlike the others:
@@ -127,21 +128,25 @@ class _HomeScreenState extends State<HomeScreen> {
             title: 'Ready works',
             subtitle: 'Already printed. Pick a color and size.',
           ),
-          const _PathCard(
+          _PathCard(
+            onTap: () => NewWorkScreen.open(context, NewWork.photo),
             icon: Icons.photo_camera_outlined,
             fill: _emeraldGold,
-            edge: Color(0xFF0F4532),
+            edge: const Color(0xFF0F4532),
             title: 'I have a photo or drawing',
             subtitle: 'Upload it and tell me your wishes.',
           ),
-          const _PathCard(
+          _PathCard(
+            onTap: () => NewWorkScreen.open(context, NewWork.idea),
             icon: Icons.lightbulb_outline,
             fill: _purpleGold,
-            edge: Color(0xFF2E1846),
+            edge: const Color(0xFF2E1846),
             title: 'I have an idea',
             subtitle:
                 'Describe it in words and get 2–3 sketches to start from.',
           ),
+          const SizedBox(height: 22),
+          const YoungDragonNote(center: true),
         ],
       ),
     );
