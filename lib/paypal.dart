@@ -15,8 +15,8 @@ class PayPal {
   static const _pendingKey = 'paypalPending';
 
   /// Creates the order and leaves for PayPal. The site sends only what was
-  /// chosen ([item]: work, material, color, size, box); the Worker prices
-  /// it from the catalog. What was ordered is kept locally, to show on the
+  /// chosen ([item]: work, material, color, size, box — or a 3D file); the
+  /// Worker prices it from the catalog. What was ordered is kept locally, to show on the
   /// "Paid" screen when the customer comes back.
   static Future<void> checkout(Map<String, String> item) async {
     final here = '${Uri.base.origin}${Uri.base.path}';
@@ -25,6 +25,9 @@ class PayPal {
             headers: {'Content-Type': 'application/json'},
             body: jsonEncode({
               'item': item,
+              // Asked in PayConsent before the button goes on.
+              'adult': true,
+              'terms': true,
               'returnUrl': '$here?paypal=return',
               'cancelUrl': '$here?paypal=cancel',
             }))

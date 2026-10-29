@@ -189,6 +189,14 @@ export function customPriced(c) {
 /// A pick is kept only if every part of it exists in the catalog; then it
 /// gets its price from there. Gemini may write a name instead of an id or
 /// change the case, so both are accepted.
+/// A 3D file the customer downloads: its own price, nothing to deliver.
+export function filePriced(pick) {
+  if (!pick || typeof pick !== 'object' || !pick.file) return null;
+  const file = (catalog.files || []).find((f) => f.id === pick.file);
+  if (!file) return null;
+  return { file: file.id, total: file.price, title: `${file.name} · STL file` };
+}
+
 export function priced(pick) {
   if (!pick || typeof pick !== 'object') return null;
   const work = catalog.works.find((w) => same(pick.work, w.id) || same(pick.work, w.name));

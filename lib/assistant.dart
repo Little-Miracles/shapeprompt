@@ -103,25 +103,31 @@ class Assistant {
   }
 
   /// The dragon looks at the guest's picture and fills in a card.
-  Future<({Map<String, dynamic> card, String reply})> readPhoto(
+  /// [forbidden] is set when the picture shows what the workshop never
+  /// makes; then there is no card.
+  Future<({Map<String, dynamic>? card, String reply, String? forbidden})>
+      readPhoto(
       Uint8List jpeg, String note, String lang) async {
     // Written by the dragon straight in the guest's language.
     final data = await _call('/photo/read',
         {'image': base64Encode(jpeg), 'note': note, 'lang': lang});
     return (
-      card: data['card'] as Map<String, dynamic>,
-      reply: data['reply'] as String? ?? ''
+      card: data['card'] as Map<String, dynamic>?,
+      reply: data['reply'] as String? ?? '',
+      forbidden: data['forbidden'] as String?,
     );
   }
 
   /// Sends the picture order to the maker; returns its number.
+  /// [jpeg] is null for an idea described only in words.
   Future<String> sendPhotoRequest(
-      Uint8List jpeg, Map<String, dynamic> card, String email) async {
+      Uint8List? jpeg, Map<String, dynamic> card, String email) async {
     final data = await _call('/photo/requests', {
-      'image': base64Encode(jpeg),
+      if (jpeg != null) 'image': base64Encode(jpeg),
       'card': card,
       'email': email,
       'consent': true,
+      'portfolio': true,
       'rights': true,
     });
     return data['id'] as String;
@@ -144,7 +150,9 @@ class Assistant {
       res = await _post(body, path);
     }
     final data = jsonDecode(utf8.decode(res.bodyBytes)) as Map<String, dynamic>;
-    if (res.statusCode != 200) throw AssistantError(res.statusCode);
+    if (res.statusCode != 200) {
+      throw AssistantError(res.statusCode, data['error'] as String?);
+    }
     _session = data['session'] as String? ?? _session;
     return data;
   }
@@ -184,8 +192,15 @@ class Assistant {
 }
 
 class AssistantError implements Exception {
-  AssistantError(this.status);
+  AssistantError(this.status, [this.error]);
   final int status;
+  final String? error;
+
+  /// The words ask for something the workshop never makes.
+  bool get forbidden => error == 'forbidden';
+
+  /// Blocked by the maker, or too many forbidden tries today.
+  bool get blocked => error == 'blocked';
 
   /// Too many questions from here, or the free Gemini quota is used up
   /// for now: either way, "a little later".

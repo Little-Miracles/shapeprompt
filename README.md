@@ -25,6 +25,23 @@ Built for the PayPal AI Hackathon on Devpost.
   (`lib/pricing.dart`, exported to `worker/src/catalog.json`), and the
   Worker prices every order again before PayPal sees it.
 
+## For the maker: approving the 3D model
+
+A request arrives by email only after the 15 zł deposit. The email has two
+signed links: **Return the deposit** (PayPal refund through the API) and
+**Block this customer** (their email and PayPal account, for a year). Both
+open a page with a button: mail apps open links by themselves, so a link
+alone never changes anything.
+
+Before printing, send the customer 2–3 pictures of the model from Bambu
+Studio and end the email with:
+
+> To start printing, please reply: "I approve the model as shown in the
+> pictures."
+
+Their reply, kept with its date, is the written approval: the figurine is
+printed as approved.
+
 ## Run locally
 
 ```

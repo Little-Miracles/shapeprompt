@@ -82,6 +82,11 @@ void main() {
           }
       ],
       'works': works,
+      // 3D files: a fixed price with VAT, no delivery.
+      'files': [
+        for (final f in digitalFiles)
+          {'id': f.id, 'name': f.name, 'price': f.priceGross}
+      ],
     };
     File('worker/src/catalog.json').writeAsStringSync(
         '${const JsonEncoder.withIndent('  ').convert(catalog)}\n');

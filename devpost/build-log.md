@@ -100,3 +100,19 @@ A customer's drawing is their work; a 3D model made from it is a derivative work
 - **Portfolio is a condition of the order**, said before sending: photos of the finished piece, with the ShapePrompt watermark grid, may appear in the master's portfolio — otherwise the master can't show how they work.
 - **Selling copies is the customer's choice.** Allowed → normal price and **10% off the next figure**. Not allowed → the piece is **exclusive, +25–50% to the price, agreed case by case** (a long, complex piece that would sell well is closer to 50%).
 - The 3D model file stays with the master and is never sent out.
+
+## Day 5 — files, portfolio, deposits and fair rules
+
+| What we changed | What we noticed | Why it matters |
+|---|---|---|
+| **3D files for sale**: the master's own STL designs (a three-tier fruit stand, a box with a hex message for programmers, a crystal bowl, a bowl, a cat grass stand), 5–10 zł; **PayPal → a download link for 7 days**, the file served by the Worker only for a paid order | People with a printer want the design, not a parcel | A digital product in the same PayPal flow — no shipping |
+| Only designs that are **legally ours** are sold: made from basic shapes, letters and the master's own freehand sketches. Library models and starter kits stay out | The Tinkercad terms forbid selling its library models | We sell only what we may sell |
+| **Portfolio** with gold frames and a "Read" story (what it is for, how it was made); a portfolio button on every path; "Photo of the print" vs "Preview of the 3D model" | Guests want to see real work before they trust a workshop | Honest showcase |
+| Photo and idea merged into one page; "we are a creative workshop — we don't print STL files you send" | Two pages asked the same questions | One clear path |
+| Order card: **what to expect** — plastic filament, not resin; small details come out simpler; one color for now (four colors with the AMS lite later); **2–3 pictures of the 3D model before printing** | A guest who sees a resin print on TikTok expects every wrinkle | No disappointment after paying |
+| The dragon checks **every figure's face and hands** before it judges the picture; the code, not the mood, decides "blurred"; the guest confirms they saw the warning | It praised an AI picture with foggy faces as "very sharp" | Structured checks beat a first impression |
+| **A 15 zł deposit sends the request**: the request waits, and the master's email arrives only after PayPal confirms the payment | Free requests can flood the master | A small step that filters out spam |
+| **Return the deposit / Block this customer**: signed links in the master's email open a page with a button (a mail app opening a link never moves money); the refund goes through the PayPal API, idempotent | The master shouldn't need the PayPal dashboard for a refund | PayPal refunds built into the workflow |
+| The dragon refuses **weapons and their parts, war drones, explosives, nudity, gore and hate symbols** — no card, no payment; three tries in a day stop the address for 24 hours; a blocked PayPal account can't pay | A workshop must be able to say no | Safety before money |
+| **18+ and the order terms** before any payment, checked on the server too; an **Order terms** page | A child with a parent's card is the shop's problem | Clear rules where money starts |
+| Ready works: **"Every piece is made for you"** — the customer's own words on the front of the base or hidden underneath, so the piece is made to their specification (Art. 38 point 3 of the Polish Consumer Rights Act) | A creative workshop is not a warehouse of returned figurines | Honest wording, with the law named correctly |

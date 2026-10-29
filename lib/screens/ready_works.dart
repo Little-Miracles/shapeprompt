@@ -4,6 +4,7 @@ import '../catalog.dart';
 import '../models.dart';
 import '../pricing.dart';
 import '../theme.dart';
+import 'portfolio.dart';
 import 'work_detail.dart';
 import '../tr_text.dart';
 
@@ -25,7 +26,9 @@ class ReadyWorksScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             style: SP.body(12.5, weight: FontWeight.w300),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 14),
+          const PortfolioButton(),
+          const SizedBox(height: 22),
           for (final w in readyWorks) _WorkTile(work: w),
         ],
       ),

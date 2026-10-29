@@ -213,3 +213,58 @@ class Quote {
   /// a whole złoty.
   double get gross => (net * vatRate).ceilToDouble();
 }
+
+/// A 3D file the customer buys and prints at home. The file itself lives
+/// on the server and is given out only after the payment.
+class DigitalFile {
+  const DigitalFile({
+    required this.id,
+    required this.name,
+    required this.about,
+    required this.image,
+    required this.sizeMm,
+    required this.priceGross,
+    required this.madeWith,
+    required this.printTip,
+    this.printed = false,
+  });
+
+  final String id;
+  final String name;
+  final String about;
+
+  /// A photo of the print, or a render of the model until there is one.
+  final String image;
+
+  /// True when [image] is a photo of the real print.
+  final bool printed;
+
+  /// Width × depth × height, as the model comes out of the slicer.
+  final String sizeMm;
+
+  /// VAT included, as the customer pays it (zł).
+  final double priceGross;
+  final String madeWith;
+  final String printTip;
+}
+
+/// One piece in the master's portfolio, with its story behind "Read".
+class PortfolioPiece {
+  const PortfolioPiece({
+    required this.title,
+    required this.image,
+    required this.purpose,
+    required this.madeWith,
+    required this.details,
+    this.printed = false,
+  });
+
+  final String title;
+  final String image;
+  final String purpose;
+  final String madeWith;
+  final String details;
+
+  /// A photo of the real print; false while the picture is a 3D render.
+  final bool printed;
+}

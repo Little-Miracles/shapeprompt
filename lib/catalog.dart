@@ -106,3 +106,105 @@ const readyWorks = <ReadyWork>[
     ],
   ),
 ];
+
+/// What every file is sold under: printing for yourself only.
+const fileLicense = 'Personal use only: print it for yourself and as a '
+    'gift. Reselling or sharing the file, and selling prints of it, is '
+    'not allowed.';
+
+/// The master's own designs, made in Tinkercad from simple shapes and
+/// sliced in Bambu Studio. Prices include VAT.
+const digitalFiles = <DigitalFile>[
+  DigitalFile(
+    id: 'fruit_stand',
+    name: 'Three-Tier Fruit Stand',
+    about: 'Three plates with scalloped edges on one stem, for fruit, '
+        'sweets or cupcakes. The flowers on the plates are drawn by hand.',
+    image: 'assets/files/stand.jpg',
+    sizeMm: '220 × 220 × 228 mm',
+    priceGross: 10,
+    madeWith: 'Tinkercad: cylinders for the plates and the stem, the '
+        'flowers drawn freehand with the Sketch tool, all aligned on one '
+        'axis.',
+    printTip: 'PLA, 0.2 mm layers. Needs a bed of at least 220 × 220 mm, '
+        'or scale it down in the slicer. Supports under the plates.',
+  ),
+  DigitalFile(
+    id: 'coder_box',
+    name: 'Box for a Programmer',
+    about: 'A box with a lid and a secret: one side says THE ANSWER IS '
+        'WITHIN, the other carries a message in hex code that only a '
+        'programmer can read. A gift for someone who writes code.',
+    image: 'assets/files/box.jpg',
+    sizeMm: '238 × 190 × 103 mm (box and lid together)',
+    priceGross: 10,
+    madeWith: 'Tinkercad: boxes hollowed out for the box and the lid, the '
+        'words made of letter shapes.',
+    printTip: 'PLA, 0.2 mm layers. Print the box and the lid side by side, '
+        'no supports.',
+  ),
+  DigitalFile(
+    id: 'crystal_vase',
+    name: 'Crystal Bowl',
+    about: 'Facets outside, a smooth round bowl inside — like a cut '
+        'crystal. For keys, jewelry, sweets or a small plant.',
+    image: 'assets/files/crystal.jpg',
+    sizeMm: '167 × 168 × 83 mm',
+    priceGross: 5,
+    madeWith: 'Tinkercad: a faceted shape hollowed out by a sphere, on a '
+        'round foot.',
+    printTip: 'PLA or PETG, 0.2 mm layers. Supports under the outer '
+        'facets.',
+  ),
+  DigitalFile(
+    id: 'round_bowl',
+    name: 'Round Bowl',
+    about: 'A smooth, simple bowl for the table or the shelf.',
+    image: 'assets/files/bowl.jpg',
+    sizeMm: '180 × 180 × 84 mm',
+    priceGross: 5,
+    madeWith: 'Tinkercad: a sphere hollowed out by a second sphere.',
+    printTip: 'PLA or PETG, 0.2 mm layers. Prints without supports.',
+  ),
+  DigitalFile(
+    id: 'grass_holder',
+    name: 'Cat Grass Stand',
+    about: 'Our master grew herbs in an indoor mini garden — and cat grass '
+        'for the cat. This stand is made to the size of one seed pod: take '
+        'the cat grass out of the garden, put it in the stand and give it '
+        'to the cat without harming the herbs, then put it back. With a '
+        'little water inside, the grass can even travel with you.',
+    image: 'assets/files/holder.jpg',
+    printed: true,
+    sizeMm: '100 × 220 × 145 mm',
+    priceGross: 5,
+    madeWith: 'Tinkercad: boxes joined and hollowed out, measured to fit '
+        'a mini garden seed pod.',
+    printTip: 'Printed in PLA. For water inside, PETG is better. '
+        '0.2 mm layers, no supports.',
+  ),
+];
+
+/// The master's portfolio: a showcase of what has been made. It grows as
+/// new works are printed and photographed.
+final portfolio = <PortfolioPiece>[
+  for (final w in readyWorks)
+    PortfolioPiece(
+      title: w.name,
+      image: w.image,
+      purpose: w.story,
+      madeWith: 'A picture made with AI, turned into a 3D model in Bambu '
+          'Lab MakerLab, repaired and sliced in Bambu Studio.',
+      details: 'Printed on a Bambu Lab A1 in PLA.',
+      printed: true,
+    ),
+  for (final f in digitalFiles)
+    PortfolioPiece(
+      title: f.name,
+      image: f.image,
+      purpose: f.about,
+      madeWith: f.madeWith,
+      details: '${f.sizeMm}. ${f.printTip}',
+      printed: f.printed,
+    ),
+];

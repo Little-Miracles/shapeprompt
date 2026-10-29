@@ -8,6 +8,8 @@ import '../theme.dart';
 import '../widgets/model_view.dart';
 import '../widgets/motion_splash.dart';
 import '../tr_text.dart';
+import '../translation.dart';
+import 'terms.dart';
 
 class WorkDetailScreen extends StatefulWidget {
   const WorkDetailScreen({super.key, required this.work});
@@ -152,7 +154,7 @@ class _WorkDetailScreenState extends State<WorkDetailScreen> {
             ),
           ],
           const SizedBox(height: 22),
-          PayButton(
+          MadeForYouPay(
             label: 'Pay with PayPal · ${zl(total)}',
             item: {
               'work': w.id,
@@ -371,6 +373,144 @@ class _PriceRow extends StatelessWidget {
 /// Gold PayPal button: creates the order through our Worker and leaves for
 /// PayPal; the customer comes back to the "Paid" screen. The dragon's
 /// order card uses it too.
+/// Every ready work is printed for one person, with their own words on it
+/// — the workshop's rule. So it is made to the customer's specification,
+/// and the 14-day withdrawal doesn't apply; the page says so plainly
+/// before the payment.
+class MadeForYouPay extends StatefulWidget {
+  const MadeForYouPay({super.key, required this.label, required this.item});
+  final String label;
+  final Map<String, String> item;
+
+  @override
+  State<MadeForYouPay> createState() => _MadeForYouPayState();
+}
+
+class _MadeForYouPayState extends State<MadeForYouPay> {
+  final _words = TextEditingController();
+  String _place = 'under';
+  bool _agreed = false;
+
+  static const _places = {
+    'under': 'Hidden underneath',
+    'front': 'On the front of the base',
+  };
+
+  @override
+  void dispose() {
+    _words.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final ready = _words.text.trim().isNotEmpty && _agreed;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: SP.purple.withOpacity(0.7)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text('Every piece is made for you',
+                  style: SP.title(15, color: SP.gold)),
+              const SizedBox(height: 4),
+              Text(
+                'We are a creative workshop, not a warehouse: each piece is '
+                'printed only after you order it, with your own words on it. '
+                'That is our workshop\'s rule. Your words can be on the front '
+                'of the base, or hidden underneath, where only the one who '
+                'turns it over will find them — good for a gift.',
+                style: SP.body(12.5, color: SP.text),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                'Because the piece is made to your specification, the 14-day '
+                'right of withdrawal does not apply (Art. 38 point 3 of the '
+                'Polish Consumer Rights Act). Please think it over before '
+                'ordering. If what you receive doesn\'t match your order or '
+                'arrives damaged, your rights for faulty goods stay in force.',
+                style: SP.body(12, color: SP.text),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 14),
+        const _Label('Your words'),
+        TextField(
+          controller: _words,
+          maxLength: 30,
+          onChanged: (_) => setState(() {}),
+          style: SP.body(13.5, color: SP.text),
+          decoration: InputDecoration(
+            hintText: t('A name, a date, a few warm words'),
+            hintStyle: SP.body(12.5),
+            filled: true,
+            fillColor: SP.asphaltCard,
+            counterStyle: SP.body(10.5),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(14),
+              borderSide: BorderSide.none,
+            ),
+          ),
+        ),
+        const SizedBox(height: 6),
+        _Chips(
+          options: _places.values.toList(),
+          selected: _places[_place]!,
+          onSelect: (v) => setState(() =>
+              _place = _places.entries.firstWhere((e) => e.value == v).key),
+        ),
+        const SizedBox(height: 8),
+        InkWell(
+          onTap: () => setState(() => _agreed = !_agreed),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Checkbox(
+                value: _agreed,
+                activeColor: SP.gold,
+                checkColor: SP.asphaltDeep,
+                onChanged: (v) => setState(() => _agreed = v ?? false),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: Text(
+                      'I understand the piece is made for me and cannot be '
+                      'returned within 14 days.',
+                      style: SP.body(12)),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 10),
+        IgnorePointer(
+          ignoring: !ready,
+          child: Opacity(
+            opacity: ready ? 1 : 0.45,
+            child: PayButton(
+              label: widget.label,
+              item: {
+                ...widget.item,
+                'words': _words.text.trim(),
+                'place': _place,
+                'madeForYou': 'yes',
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class PayButton extends StatefulWidget {
   const PayButton({super.key, required this.label, required this.item});
   final String label;
@@ -384,6 +524,7 @@ class _PayButtonState extends State<PayButton> {
   bool _busy = false;
 
   Future<void> _pay() async {
+    if (!await PayConsent.ask(context) || !mounted) return;
     setState(() => _busy = true);
     try {
       await PayPal.checkout(widget.item);

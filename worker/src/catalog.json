@@ -1740,5 +1740,32 @@
         }
       ]
     }
+  ],
+  "files": [
+    {
+      "id": "fruit_stand",
+      "name": "Three-Tier Fruit Stand",
+      "price": 10.0
+    },
+    {
+      "id": "coder_box",
+      "name": "Box for a Programmer",
+      "price": 10.0
+    },
+    {
+      "id": "crystal_vase",
+      "name": "Crystal Bowl",
+      "price": 5.0
+    },
+    {
+      "id": "round_bowl",
+      "name": "Round Bowl",
+      "price": 5.0
+    },
+    {
+      "id": "grass_holder",
+      "name": "Cat Grass Stand",
+      "price": 5.0
+    }
   ]
 }

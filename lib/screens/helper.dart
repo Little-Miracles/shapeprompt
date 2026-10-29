@@ -13,7 +13,7 @@ import '../translation.dart';
 import '../voice.dart';
 import '../web_nav.dart';
 import 'new_work.dart';
-import 'work_detail.dart' show PayButton;
+import 'work_detail.dart' show MadeForYouPay;
 
 /// The helper's switches, remembered between visits: mic (talk or type),
 /// sound (answers read aloud or only shown) and whether the ice welcome
@@ -437,7 +437,7 @@ class _HelperSheetState extends State<_HelperSheet> with RebuildOnTranslation {
     }
   }
 
-  /// Buttons to the pages for something we have never made. The helper
+  /// The button to the page for something we have never made. The helper
   /// closes, so the page is seen whole.
   Widget _routes(String route, String? thing) {
     // "Puss in Boots: I have an idea". The name is translated on its own,
@@ -488,11 +488,12 @@ class _HelperSheetState extends State<_HelperSheet> with RebuildOnTranslation {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (route != 'idea')
-          go(NewWork.photo, 'I have a photo or drawing',
-              Icons.photo_camera_outlined),
-        if (route != 'photo')
-          go(NewWork.idea, 'I have an idea', Icons.lightbulb_outline),
+        // One page takes a picture and an idea in words alike.
+        go(route == 'idea' ? NewWork.idea : NewWork.photo,
+            route == 'idea' ? 'Describe my idea' : 'Photo, drawing or idea',
+            route == 'idea'
+                ? Icons.lightbulb_outline
+                : Icons.photo_camera_outlined),
       ],
     );
   }
@@ -819,7 +820,7 @@ class _OrderCard extends StatelessWidget {
           row('Total to pay', pick.total, bold: true),
           row('incl. VAT 23%', vatOf(pick.total)),
           const SizedBox(height: 10),
-          PayButton(
+          MadeForYouPay(
             label: 'Pay with PayPal · ${zl(pick.total)}',
             item: pick.item,
           ),

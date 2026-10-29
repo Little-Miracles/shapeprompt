@@ -3,6 +3,7 @@ import 'package:flutter/material.dart' hide Text;
 import '../paypal.dart';
 import '../pricing.dart';
 import '../theme.dart';
+import '../web_nav.dart';
 import '../tr_text.dart';
 import 'start.dart';
 
@@ -48,6 +49,8 @@ class _PaidScreenState extends State<PaidScreen> {
   Widget build(BuildContext context) {
     final busy = !widget.cancelled && _result == null && _error == null;
     final paid = _result?['status'] == 'COMPLETED';
+    final download = _result?['download'] as String?;
+    final request = _result?['request'] as String?;
     return SPScaffold(
       body: ListView(
         padding: const EdgeInsets.fromLTRB(28, 60, 28, 40),
@@ -70,18 +73,47 @@ class _PaidScreenState extends State<PaidScreen> {
                     (_result!['amount']?['value'] ?? '0').toString()))),
             _line('PayPal order number', _result!['id'] as String? ?? ''),
             const SizedBox(height: 12),
-            Text(
-              'Our master will start printing and will write to you '
-              'when the parcel is on its way.',
-              textAlign: TextAlign.center,
-              style: SP.body(13, color: SP.text),
-            ),
+            if (download != null) ...[
+              Text(
+                'Your file is ready. The link works for 7 days.',
+                textAlign: TextAlign.center,
+                style: SP.body(13, color: SP.text),
+              ),
+              const SizedBox(height: 14),
+              Center(
+                child: GoldButton(
+                    label: 'Download the file', onTap: () => goTo(download)),
+              ),
+            ] else if (request != null)
+              Text(
+                'Your request $request has reached our master together with '
+                'the deposit. Our master writes to you within 24 hours with '
+                'the price.',
+                textAlign: TextAlign.center,
+                style: SP.body(13, color: SP.text),
+              )
+            else
+              Text(
+                'Our master will start printing and will write to you '
+                'when the parcel is on its way.',
+                textAlign: TextAlign.center,
+                style: SP.body(13, color: SP.text),
+              ),
           ] else if (widget.cancelled) ...[
             Text('The payment was cancelled.',
                 textAlign: TextAlign.center, style: SP.title(22)),
             const SizedBox(height: 10),
             Text('Nothing was charged. You can come back to it anytime.',
                 textAlign: TextAlign.center, style: SP.body(13)),
+          ] else if (_error?.contains('blocked') ?? false) ...[
+            Text('We can\'t take orders from you.',
+                textAlign: TextAlign.center, style: SP.title(22)),
+            const SizedBox(height: 10),
+            Text(
+                'Nothing was charged. If you think this is a mistake, write '
+                'to hello@craftaxi.com.',
+                textAlign: TextAlign.center,
+                style: SP.body(13)),
           ] else ...[
             Text('The payment did not go through.',
                 textAlign: TextAlign.center, style: SP.title(22)),

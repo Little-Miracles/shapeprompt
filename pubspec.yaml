@@ -64,6 +64,7 @@ flutter:
   assets:
     - assets/logo/
     - assets/works/
+    - assets/files/
     - assets/helper/
     - assets/anim/hello/
     - assets/anim/dragon/
