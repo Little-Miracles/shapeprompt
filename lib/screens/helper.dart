@@ -174,7 +174,9 @@ class _Line {
       this.custom,
       this.route,
       this.newThing});
-  final String text; // already in the reader's language
+  // The dragon's words in English (translated on screen, so another
+  // language turns the whole conversation); the guest's as written.
+  final String text;
   final bool mine;
 
   /// The orders the dragon prepared with these words.
@@ -213,7 +215,8 @@ class _Line {
 
 /// The conversation stays in this browser for a day after the last word,
 /// so a guest can look at a page, come back and go on.
-const _chatKey = 'helperChat';
+// v2: the dragon's lines are kept in English (v1 kept them translated).
+const _chatKey = 'helperChat2';
 const _chatKeeps = Duration(hours: 24);
 
 class _HelperSheet extends StatefulWidget {
@@ -281,13 +284,13 @@ class _HelperSheetState extends State<_HelperSheet> with RebuildOnTranslation {
       String? route,
       String? newThing}) async {
     _history.add((text: english, mine: false));
+    // Waited for, so the words float in already translated.
     final text = await TranslationService.instance.translate(english);
     if (!mounted) return;
     _wordTimer?.cancel();
     _settleTyping();
-    final words = text.split(' ');
     setState(() {
-      _typing = text;
+      _typing = english;
       _typingPicks = picks;
       _typingCustom = custom;
       _typingRoute = route;
@@ -296,11 +299,11 @@ class _HelperSheetState extends State<_HelperSheet> with RebuildOnTranslation {
     });
     _save();
     if (_prefs.sound.value) _voice.speak(text, _lang);
-    _wordTimer = Timer.periodic(const Duration(milliseconds: 140), (t) {
-      if (!mounted) return t.cancel();
+    _wordTimer = Timer.periodic(const Duration(milliseconds: 140), (timer) {
+      if (!mounted) return timer.cancel();
       setState(() => _shownWords++);
       _toBottom();
-      if (_shownWords >= words.length) t.cancel();
+      if (_shownWords >= t(_typing).split(' ').length) timer.cancel();
     });
   }
 
@@ -530,7 +533,7 @@ class _HelperSheetState extends State<_HelperSheet> with RebuildOnTranslation {
 
   @override
   Widget build(BuildContext context) {
-    final words = _typing.split(' ');
+    final words = t(_typing).split(' ');
     final floating = words.take(_shownWords).join(' ');
     return Center(
       heightFactor: 1,
@@ -559,7 +562,7 @@ class _HelperSheetState extends State<_HelperSheet> with RebuildOnTranslation {
                     const _DragonWithSign(),
                     const SizedBox(height: 12),
                     for (final l in _lines) ...[
-                      _bubble(l.text, mine: l.mine),
+                      _bubble(l.mine ? l.text : t(l.text), mine: l.mine),
                       for (final p in l.picks) _OrderCard(pick: p),
                       if (l.custom != null)
                         _RequestCard(custom: l.custom!, onSent: _requestSent),

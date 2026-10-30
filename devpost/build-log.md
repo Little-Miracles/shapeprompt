@@ -116,3 +116,15 @@ A customer's drawing is their work; a 3D model made from it is a derivative work
 | The dragon refuses **weapons and their parts, war drones, explosives, nudity, gore and hate symbols** — no card, no payment; three tries in a day stop the address for 24 hours; a blocked PayPal account can't pay | A workshop must be able to say no | Safety before money |
 | **18+ and the order terms** before any payment, checked on the server too; an **Order terms** page | A child with a parent's card is the shop's problem | Clear rules where money starts |
 | Ready works: **"Every piece is made for you"** — the customer's own words on the front of the base or hidden underneath, so the piece is made to their specification (Art. 38 point 3 of the Polish Consumer Rights Act) | A creative workshop is not a warehouse of returned figurines | Honest wording, with the law named correctly |
+
+## Day 6 — testing every payment path, and what the tests taught us
+
+| What we changed | What we noticed | Why it matters |
+|---|---|---|
+| The Worker **unwraps a tangled AI answer** (the whole JSON hidden inside the text field) and asks Gemini once more; if it still can't read it, the dragon says "my words got tangled" | In a test the chat showed raw JSON instead of words and an order card | The guest never sees code |
+| The dragon's words are **kept in English and translated on screen**, so switching the language turns the whole conversation, old messages too; the dragon uses only English words (no "Dzień dobry") | The language buttons changed the labels but not the chat | A language button must do what it promises |
+| **Another color, size or material = an individual order**, priced by the master; the dragon doesn't list colors or judge what's possible. A guest who says "I have a photo" gets the button at once | The dragon argued about gold PETG and asked needless questions | The AI prepares, a person decides |
+| On the photo card **one color at a time**: a color chip empties the "other color" line, typing a color clears the chip | Both "White" and "grey" were visible — which one goes to the master? | No ambiguous orders |
+| **"Step 1 of 2: save my request" → "⚠ Not sent to our master yet" → "Step 2 of 2: the deposit"**. An unpaid request is remembered in the browser for 48 hours; after cancel, the back arrow or a closed tab, the home page shows it with its pay button; it disappears once the deposit is paid | A saved request looked "sent", and leaving PayPal lost it | The guest always knows where their request is |
+| **An email to the master for every paid ready work**: what, the customer's words, amount, PayPal number, shipping address from PayPal; Reply goes to the customer | Requests had emails, paid orders didn't — and paid money needs an answer within 24 hours | Nothing paid is missed |
+| **All PayPal paths tested end to end in Sandbox**: ready work with words, 3D file → download, deposit → master's email, **refund** from the email link, **block** (the photo form refuses the email; a ready work is not captured for a blocked PayPal account) | — | Every money path is proven, not assumed |

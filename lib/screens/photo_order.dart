@@ -10,6 +10,7 @@ import '../pricing.dart';
 import '../theme.dart';
 import 'portfolio.dart';
 import 'terms.dart';
+import 'unsent.dart';
 import 'work_detail.dart' show PayButton;
 import '../tr_text.dart';
 import '../translation.dart';
@@ -219,6 +220,8 @@ class _PhotoOrderScreenState extends State<PhotoOrderScreen>
             'copies': _copies,
           },
           _email.text.trim());
+      // Remembered until paid: leaving PayPal must not lose it.
+      await Unsent.save(id, _name.text.trim());
       if (mounted) setState(() => _sentId = id);
     } catch (e) {
       if (!mounted) return;
@@ -267,9 +270,13 @@ class _PhotoOrderScreenState extends State<PhotoOrderScreen>
         m.Text('${t('Request saved')} · $_sentId',
             textAlign: TextAlign.center,
             style: SP.title(20, color: SP.goldLight)),
+        const SizedBox(height: 6),
+        Text('⚠ Not sent to our master yet',
+            textAlign: TextAlign.center,
+            style: SP.title(17, color: SP.gold)),
         const SizedBox(height: 10),
         Text(
-          'One step left: the 15 zł deposit. With it your request goes to '
+          'Step 2 of 2: the 15 zł deposit. With it your request goes to '
           'our master, who writes to you within 24 hours with the price. '
           'The deposit counts toward the price; it is returned only if our '
           'master declines before starting work.',
@@ -446,7 +453,11 @@ class _PhotoOrderScreenState extends State<PhotoOrderScreen>
         _label('One color for the figure'),
         if (_materialColors.isNotEmpty) ...[
           _chips({for (final n in _materialColors) n: n}, _colorChip,
-              (v) => setState(() => _colorChip = v)),
+              // One color at a time: a chip empties the "another color" line.
+              (v) => setState(() {
+                    _colorChip = v;
+                    _color.clear();
+                  })),
           const SizedBox(height: 10),
         ],
         _field(
@@ -615,7 +626,7 @@ class _PhotoOrderScreenState extends State<PhotoOrderScreen>
                           height: 24,
                           child: CircularProgressIndicator(
                               strokeWidth: 2.5, color: SP.asphaltDeep))
-                      : Text('Send · then the 15 zł deposit',
+                      : Text('Step 1 of 2: save my request',
                           style: SP.title(17, color: SP.asphaltDeep)),
                 ),
               ),
@@ -669,7 +680,10 @@ class _PhotoOrderScreenState extends State<PhotoOrderScreen>
                   : email
                       ? TextInputType.emailAddress
                       : TextInputType.text,
-              onChanged: (_) => setState(() {}),
+              onChanged: (_) => setState(() {
+                // A color written by hand takes the place of the chip.
+                if (c == _color && c.text.trim().isNotEmpty) _colorChip = null;
+              }),
               style: SP.body(13.5, color: SP.text),
               decoration: InputDecoration(
                 filled: true,

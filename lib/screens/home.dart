@@ -11,6 +11,7 @@ import 'files.dart';
 import 'new_work.dart';
 import 'portfolio.dart';
 import 'ready_works.dart';
+import 'unsent.dart';
 
 /// The three ways to buy — the one screen that looks unlike the others:
 /// the dragon sits big above the paths, and each path is a jewel card.
@@ -82,6 +83,8 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
         children: [
           const BackRow(),
+          // A request left at PayPal: first thing the guest sees.
+          const UnsentCard(),
           ShaderMask(
             shaderCallback: (r) => SP.metalGold.createShader(r),
             child: Text('What would you like?',

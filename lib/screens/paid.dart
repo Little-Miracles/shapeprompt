@@ -6,6 +6,7 @@ import '../theme.dart';
 import '../web_nav.dart';
 import '../tr_text.dart';
 import 'start.dart';
+import 'unsent.dart';
 
 /// Where PayPal sends the customer back: takes the payment and says thank
 /// you — or, if they cancelled, says the order is still waiting.
@@ -39,6 +40,8 @@ class _PaidScreenState extends State<PaidScreen> {
     try {
       final r = await PayPal.capture(widget.orderId!);
       await PayPal.forget();
+      // The deposit is paid: the request has reached our master.
+      if (r['request'] != null) await Unsent.forget();
       if (mounted) setState(() => _result = r);
     } catch (e) {
       if (mounted) setState(() => _error = '$e');
@@ -120,6 +123,11 @@ class _PaidScreenState extends State<PaidScreen> {
             const SizedBox(height: 10),
             Text('Nothing was charged. Please try again a little later.',
                 textAlign: TextAlign.center, style: SP.body(13)),
+          ],
+          // Not paid: a waiting request is right here to pay again.
+          if (!busy && !paid) ...[
+            const SizedBox(height: 18),
+            const UnsentCard(),
           ],
           const SizedBox(height: 18),
           Text(

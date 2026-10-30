@@ -277,6 +277,41 @@ async function depositPriced(pick, env) {
   return { deposit: id, total: DEPOSIT, title: `3D model deposit · request ${id}` };
 }
 
+/// A ready work is paid: the maker prints it and sends the parcel.
+async function tellMakerSale(title, paypalId, amount, payer, shipping, env) {
+  const name = [((payer || {}).name || {}).given_name, ((payer || {}).name || {}).surname]
+    .filter(Boolean)
+    .join(' ');
+  const email = (payer || {}).email_address || '';
+  const a = (shipping || {}).address || {};
+  const to = [
+    ((shipping || {}).name || {}).full_name,
+    a.address_line_1,
+    a.address_line_2,
+    [a.postal_code, a.admin_area_2].filter(Boolean).join(' '),
+    a.country_code,
+  ].filter(Boolean);
+  const text = [
+    '✅ PAID ORDER — the money is already taken.',
+    'Print it and write to the customer when the parcel is on its way.',
+    '',
+    `What: ${title}`,
+    `Paid: ${amount ? `${amount.value} ${amount.currency_code}` : '—'} (PayPal ${paypalId})`,
+    `Ship to: ${to.length ? to.join(', ') : 'see the order in PayPal'}`,
+    '',
+    `Customer: ${name || '—'}${email ? ` <${email}>` : ''}`,
+    'Press Reply to write to the customer.',
+    '',
+    `Sent by the ShapePrompt dragon, ${new Date().toISOString()}`,
+  ].join('\n');
+  await sendToMaker({ id: paypalId, email }, `✅ Paid order: ${title}`, [
+    'Content-Type: text/plain; charset=UTF-8',
+    'Content-Transfer-Encoding: base64',
+    '',
+    wrap(base64(text)),
+  ], env);
+}
+
 async function tellMakerPhoto(r, image, env) {
   const text = [
     image ? `New picture order ${r.id}` : `New idea order ${r.id} (no picture)`,
@@ -347,7 +382,7 @@ async function sendToMaker(r, subject, mimeBody, env) {
   const raw = [
     `From: ShapePrompt <${from}>`,
     `To: ${env.MAKER_EMAIL}`,
-    `Reply-To: ${r.email}`,
+    ...(r.email ? [`Reply-To: ${r.email}`] : []),
     `Subject: ${encodeWord(subject)}`,
     `Message-ID: <${r.id}.${Date.now()}@craftaxi.com>`,
     `Date: ${new Date().toUTCString()}`,
@@ -442,12 +477,10 @@ async function createOrder(request, env, cors) {
     },
   });
   if (!res.ok) return json({ error: 'create failed', detail: res.data }, 502, cors);
-  // Remembered for the capture: which file this payment opens, or which
-  // request it sends to the maker.
-  const what = file ? file.file : deposit ? `deposit:${deposit.deposit}` : null;
-  if (what) {
-    await env.REQUESTS.put(`order:${res.data.id}`, what, { expirationTtl: 24 * 60 * 60 });
-  }
+  // Remembered for the capture: which file this payment opens, which
+  // request it sends to the maker, or which ready work the maker prints.
+  const what = file ? file.file : deposit ? `deposit:${deposit.deposit}` : `ready:${item.title}`;
+  await env.REQUESTS.put(`order:${res.data.id}`, what, { expirationTtl: 24 * 60 * 60 });
   const approve = (res.data.links || []).find(
     (l) => l.rel === 'payer-action' || l.rel === 'approve',
   );
@@ -478,6 +511,13 @@ async function captureOrder(id, env, cors, origin) {
     if (what.startsWith('deposit:')) {
       request = what.slice('deposit:'.length);
       await requestPaid(request, id, capture.id, payer.payer_id || payerId, env, origin);
+    } else if (what.startsWith('ready:')) {
+      try {
+        await tellMakerSale(what.slice('ready:'.length), id, capture.amount, payer, unit.shipping, env);
+      } catch (e) {
+        // Paid anyway; PayPal's own note to the maker still comes.
+        console.log('maker email failed', String(e));
+      }
     } else {
       await env.REQUESTS.put(`paid:${id}`, what, { expirationTtl: DOWNLOAD_DAYS * 24 * 60 * 60 });
       link = `${origin}/download?order=${id}`;
