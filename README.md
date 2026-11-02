@@ -12,6 +12,10 @@ Built for the PayPal AI Hackathon on Devpost.
 - Scope: [devpost/scope.md](devpost/scope.md)
 - Build log: [devpost/build-log.md](devpost/build-log.md)
 
+## Architecture
+
+![ShapePrompt architecture](devpost/images/architecture.png)
+
 ## How PayPal is used
 
 All payments go through our Cloudflare Worker (`worker/src/index.js`); the
