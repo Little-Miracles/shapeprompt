@@ -128,3 +128,16 @@ A customer's drawing is their work; a 3D model made from it is a derivative work
 | **"Step 1 of 2: save my request" → "⚠ Not sent to our master yet" → "Step 2 of 2: the deposit"**. An unpaid request is remembered in the browser for 48 hours; after cancel, the back arrow or a closed tab, the home page shows it with its pay button; it disappears once the deposit is paid | A saved request looked "sent", and leaving PayPal lost it | The guest always knows where their request is |
 | **An email to the master for every paid ready work**: what, the customer's words, amount, PayPal number, shipping address from PayPal; Reply goes to the customer | Requests had emails, paid orders didn't — and paid money needs an answer within 24 hours | Nothing paid is missed |
 | **All PayPal paths tested end to end in Sandbox**: ready work with words, 3D file → download, deposit → master's email, **refund** from the email link, **block** (the photo form refuses the email; a ready work is not captured for a blocked PayPal account) | — | Every money path is proven, not assumed |
+
+## Day 7 — 2 November: the video, and submitting
+
+| What we did | What we noticed | Why it matters |
+|---|---|---|
+| The demo video: three chapters — **a ready figurine** through the dragon, **a 3D file** with its download, **an order from a picture** with the deposit, the maker's email and the refund | The first cut jumped between screens; a person seeing ShapePrompt for the first time couldn't follow it | Each chapter is one unbroken path, from the first tap to "Paid" |
+| Every step before PayPal stays in: the customer's words, the checkbox, **"Before you pay"** (18+ and the terms) | Cutting them made it look as if PayPal opened by itself | The judges see the real order of things |
+| **Left side: what the feature does. Right side: how it works** — Worker, Turnstile, Gemini, `catalog.json`, Orders API, KV, signed email links, Refunds API | Architecture is easier to trust when you see it next to the screen it powers | Design and technology in one picture |
+| Background in the logo's colors: emerald on the left, purple on the right, glowing from the app | A diagonal highlight "broke the eye"; grey on grey looked dull | The app looks lit from both sides |
+| The greeting in five languages, switched on camera | The language window flashed by for a fraction of a second | Translation on the fly, shown, not claimed |
+| **Privacy pass, frame by frame**: Chrome's autofill and "Save password?" popups, the maker's real email addresses, the Gmail interface — cut or blurred; an automatic check for anything that appears for a split second | A popup with personal data was visible for under a second | Nothing private in a public video |
+| Music composed in code (`tool/compose_music.py`): harp, small bells, a warm pad, D minor | — | Original music, no licences |
+| Submitted to Devpost with testing instructions and a Sandbox buyer for the judges | The Sandbox login froze in a browser profile with a saved PayPal session; a private window fixed it | The judges get the tip in the instructions |
